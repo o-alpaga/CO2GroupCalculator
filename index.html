@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <meta http-equiv="expires" content="Sun, 04 May 2020 00:00:01 GMT" />
+    <title>Country CO2 Digital Impact</title>
+    <link rel="shortcut icon" href="favicon.gif?v1.0">
+    <script src="./js/jquery-3.4.1.slim.min.js"></script>
+    <script src="./js/script.js"></script>
+
+    <link href="./css/global.css" rel="stylesheet">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <!--
+	CO2 Calculator by Decathlon - Julien Gontier - 2020
+	CO2 calculator of digital impact on entreprise
+	Images are hosted in a css sprite to avoid http transfer
+	Jquery is used to make the code easy to read (just the slim js file)
+	External Font is not mandatory
+-->
+</head>
+
+<body>
+    <div class="container">
+        <a href="#" id="DisplayFactors">Display Factors</a>
+        <div id="FactorTabs">
+            <div class="factorDiv" id="storageFactorDiv">storageFactor <input type="text" id="storageFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="mailFactorDiv"> mailFactor <input type="text" id="mailFactor" class="factorClass"
+                    value="" /> </div>
+            <div class="factorDiv" id="visioFactorDiv">visioFactor <input type="text" id="visioFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="laptopFactorDiv">laptopFactor <input type="text" id="laptopFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="desktopFactorDiv">desktopFactor <input type="text" id="desktopFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="thinclientFactorDiv">thinclientFactor <input type="text" id="thinclientFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="smallScreenFactorDiv">smallScreenFactor <input type="text" id="smallScreenFactor"
+                    class="factorClass" value=""></div>
+            <div class="factorDiv" id="bigScreenFactorDiv">bigScreenFactor <input type="text" id="bigScreenFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="smartphoneFactorDiv">smartphoneFactor <input type="text" id="smartphoneFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="tabletFactorDiv">tabletFactor <input type="text" id="tabletFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="barcodeFactorDiv">barcodeFactor <input type="text" id="barcodeFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="cashFactorDiv">cashFactor <input type="text" id="cashFactor" class="factorClass"
+                    value="" /></div>
+            <div class="factorDiv" id="kioskFactorDiv">kioskFactor <input type="text" id="kioskFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="printersFactorDiv">printersFactor <input type="text" id="printersFactor"
+                    class="factorClass" value="" />
+            </div>
+            <div class="factorDiv" id="paperFactorDiv">paperFactor <input type="text" id="paperFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="physicalServerFactorDiv">physicalServerFactor <input type="text"
+                    id="physicalServerFactor" class="factorClass" value="" /></div>
+            <div class="factorDiv" id="hostingBayFactorDiv">hostingBayFactor <input type="text" id="hostingBayFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="networkPaperFactorDiv">networkPaperFactor <input type="text"
+                    id="networkPaperFactor" class="factorClass" value="" /></div>
+            <div class="factorDiv" id="awsServerFactorDiv">awsServerFactor <input type="text" id="awsServerFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="gcpServerFactorDiv">gcpServerFactor <input type="text" id="gcpServerFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="azureServerFactorDiv">azureServerFactor <input type="text" id="azureServerFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="otherServerFactorDiv">otherServerFactor <input type="text" id="otherServerFactor"
+                    class="factorClass" value="" /></div>
+            <div class="factorDiv" id="DatabaseStorageServerFactorDiv">DatabaseStorageServerFactor <input type="text"
+                    id="DatabaseStorageServerFactor" class="factorClass" value="" /></div>
+            <div class="factorDiv" id="FileStorageServerFactorDiv">FileStorageServerFactor <input type="text"
+                    id="FileStorageServerFactor" class="factorClass" value="" /></div>
+            <div class="factorDiv" id="serverStorageFactorDiv">serverStorageFactor <input type="text"
+                    id="serverStorageFactor" class="factorClass" value="" /></div>
+            <div class="factorDiv" id="EcomFactorDiv">EcomFactor <input type="text" id="EcomFactor" class="factorClass"
+                    value="" /></div>
+        </div>
+        <div class="clear"></div>
+        <h1>COUNTRY</h1>
+        <select>
+            <option>FR</option>
+            <option>CN</option>
+        </select>
+        <div class="container">
+            <h1>CLOUD</h1>
+            <h3>Storage (To)</h3>
+            <input type="number" id="storage" class="input">
+            <h3>Mail</h3>
+            <input type="number" id="mail" class="input">
+            <h3>Visio</h3>
+            <input type="number" id="visio" class="input">
+        </div>
+        <div class="container">
+            <h1>USER DEVICES</h1>
+            <h3>Laptop</h3>
+            <input type="number" id="laptop" class="input">
+            <h3>Desktop (and screen)</h3>
+            <input type="number" id="desktop" class="input">
+            <h3>ThinClient (and screen)</h3>
+            <input type="number" id="thinclient" class="input">
+            <h3>Screen &#60;22'</h3>
+            <input type="number" id="smallScreen" class="input">
+            <h3>Screen > 22'</h3>
+            <input type="number" id="bigScreen" class="input">
+            <h1>Mobile Device</h1>
+            <h3>Smartphone</h3>
+            <input type="number" id="smartphone" class="input">
+            <h3>Tablet</h3>
+            <input type="number" id="tablet" class="input">
+            <h1>Store Device</h1>
+            <h3>Barcode Scanner</h3>
+            <input type="number" id="barcode" class="input">
+            <h3>Cash Register</h3>
+            <input type="number" id="cash" class="input">
+            <h3>Kiosk in Stores</h3>
+            <input type="number" id="kiosk" class="input">
+            <h3>Printers</h3>
+            <input type="number" id="printers" class="input">
+            <h3>Paper Ream</h3>
+            <input type="number" id="paper" class="input">
+
+        </div>
+        <div class="container">
+            <h1>Store Servers</h1>
+            <h3>Physical Servers</h3>
+            <input type="number" id="physicalServer" class="input">
+            <h3>Hosting Bay</h3>
+            <input type="number" id="hostingBay" class="input">
+            <h3>Network Equipment</h3>
+            <input type="number" id="networkPaper" class="input">
+        </div>
+        <div class="container">
+            <h1>Electricity Consumption On Site</h1>
+        </div>
+        <div class="container">
+            <h1>Cloud Server</h1>
+
+            <h3>Aws Server</h3>
+            <input type="number" id="awsServer" class="input">
+            <h3>GCP Server</h3>
+            <input type="number" id="gcpServer" class="input">
+            <h3>Microsoft Server</h3>
+            <input type="number" id="azureServer" class="input">
+            <h3>Other Cloud Provider</h3>
+            <input type="number" id="otherServer" class="input">
+        </div>
+        <div class="container">
+            <h1>Cloud Storage</h1>
+            <h3>Database</h3>
+            <input type="number" id="DatabaseStorage" class="input">
+            <h3>File Storage</h3>
+            <input type="number" id="FileStorage" class="input">
+            <h3>Server Storage</h3>
+            <input type="number" id="serverStorage" class="input">
+        </div>
+        <div>
+            <h1>Cloud Server Consumption</h1>
+            <h1>Ecommerce</h1>
+            <h3>Number of visits</h3>
+            <input type="number" id="ecom" class="input">
+            <h3>Page Impact</h3>
+            <input type="number" id="page" class="input">
+        </div>
+    </div>
+</body>
+
+</html>

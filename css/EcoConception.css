@@ -1,0 +1,390 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-bottom: 40px;
+    background-image: ;
+}
+div {
+    border: 0px solid;
+}
+h1 {
+    font-size: 30px;
+    color: #0A0A0A;
+    margin: 5px 0 5px 0;
+}
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4D4D4D;
+}
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+.bold {
+    font-weight: bold;
+    color: #bfffbf;
+}
+.clear {
+    clear: both;
+}
+.center {
+    text-align: center;
+}
+.hide {
+    display: none;
+}
+#todo {
+    font-size: 12px;
+}
+.img_flag {
+    height: 20px;
+}
+#page {
+    width: 100%;
+    margin: 0 auto;
+}
+#head {
+    width: 95%;
+    height: 94px;
+    z-index: 100;
+    background-color: white;
+    padding-top: 5px;
+    margin: 0 auto;
+}
+#content {
+    width: 95%;
+    height: 700px;
+    z-index: 100;
+    margin: auto;
+}
+#footer {
+    width: 95%;
+    height: 540px;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin: auto;
+    background-color: white;
+}
+#head_container {
+    float: left;
+    width: 100%;
+}
+#logo {
+    float: left;
+    width: 40%;
+    text-align: left;
+}
+#svg_logo {
+    height: 40px;
+}
+#flag {
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+#title {
+    float: left;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+#data {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: auto;
+}
+.question {
+    float: left;
+    width: 40%;
+    color: #4D4D4D;
+    border-bottom: 1px dashed #eee;
+    height: 30px;
+}
+.answer {
+    float: left;
+    color: #4D4D4D;
+    border-bottom: 1px dashed #eee;
+    min-width: 140px;
+    max-width:40%;
+    height: 30px;
+}
+.answer2{
+    float: left;
+    border-bottom: 1px dashed #eee;
+    min-width: 26%;
+    height: 30px;
+}
+
+.input_part_all {
+    width: 100%;
+    background-color: #D7D6DC;
+    float: left;
+    min-height: 80px;
+    margin: 0px 1% 1% 0;
+    padding: 20px;
+    opacity: 0.90;
+}
+.input_part{
+    opacity: 0.90;
+}
+.instructions {
+    font-size: 18px;
+    color: #4D4D4D;
+    font-weight: bold;
+}
+input {
+    padding: 6px 6px;
+    border: 1px solid #d4d7d9;
+    border-radius: 4px;
+    height:14px;
+    width: 100px;
+   }
+select{
+    border-radius: 4px;
+    height:20px;
+}
+@media screen and (max-width: 1100px) {
+    body {
+        font-size: 18px;
+   }
+    select, input {
+        font-size: 18px;
+   }
+    .triplebox {
+        display: none;
+   }
+    .box {
+        float: left;
+        min-height: 130px;
+        width: 25%;
+        margin: 0 1% 1% 0;
+        background-color: #4D4D4D;
+        text-align: center;
+        color: #FEFEFE;
+   }
+    .input_part {
+        float: left;
+        min-height: 130px;
+        padding-left: 20px;
+        margin: 0px 1% 1% 0;
+        width: 70%;
+        background-color: #D7D6DC;
+   }
+    .tooltip {
+        display: none;
+   }
+   
+}
+@media screen and (min-width: 1100px) {
+    body {
+        font-size: 16px;
+   }
+    select, input {
+        font-size: 14px;
+   }
+    .input_part {
+        float: left;
+        min-height: 130px;
+        padding-left: 20px;
+        margin: 0px 1% 1% 0;
+        width: 50%;
+        background-color: #D7D6DC;
+        font-size: 16px;
+   }
+    .triplebox {
+        float: left;
+        font-size: 12px;
+        min-height: 130px;
+        width: 30%;
+        margin: 0 1% 1% 0;
+        background-color: rgb(131, 131, 131);
+        text-align: center;
+        color: #FEFEFE;
+   }
+    .box {
+        float: left;
+        min-height: 130px;
+        width: 15%;
+        margin: 0 1% 1% 0;
+        background-color: #4D4D4D;
+        text-align: center;
+        color: #FEFEFE;
+   }
+   /*Tooltip*/
+   /* Tooltip container */
+    .tooltip {
+        float: left;
+        color: #4D4D4D;
+        width: 30px;
+        background: url('../Images/bulb.png') no-repeat;
+        position: relative;
+   }
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+   }
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+   }
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+   }
+}
+.line31 {
+    height: 31px;
+}
+.line93 {
+    height: 93px;
+}
+.subtotal {
+    font-size: 50px;
+    font-weight: bold;
+}
+.pre {
+    float: left;
+    background-image: url('http://sustainability.decathlon.com/wp-content/uploads/2019/01/total_pre.png');
+    height: 150px;
+    width: 29px;
+}
+.post {
+    float: left;
+    background-image: url('http://sustainability.decathlon.com/wp-content/uploads/2019/01/total_post.png');
+    height: 150px;
+    width: 29px;
+}
+.div_subtotal {
+    float: left;
+    width: 80%;
+    height: 150px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #D8D7DC;
+    padding-left: 5%;
+}
+.subtotal {
+    font-size: 40px;
+    font-weight: bold;
+}
+.subtotal h3 {
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+.total {
+    color: red;
+}
+.div_total {
+    width: 500px;
+}
+.tips {
+    width: 80%;
+}
+.unit {
+    font-size: 8px;
+    ;
+}
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    font-size:11px;
+}
+.modal-content h1 {
+    font-size:18px;
+    text-decoration: underline;
+    padding:5px;
+}
+.modal-content h2 {
+    font-size:16px;
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+   }
+    to {
+        top: 0;
+        opacity: 1;
+   }
+}
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+   }
+    to {
+        top: 0;
+        opacity: 1;
+   }
+}
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-header h2{
+    color: white;
+}
+.modal-body {
+    padding: 2px 16px;
+}
