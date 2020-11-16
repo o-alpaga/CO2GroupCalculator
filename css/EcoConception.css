@@ -1,7 +1,6 @@
 body {
     font-family: 'Roboto Condensed', sans-serif;
     padding-bottom: 40px;
-    background-image: ;
 }
 div {
     border: 0px solid;
@@ -20,6 +19,7 @@ h3 {
     font-size: 18px;
     font-weight: bold;
     font-style: italic;
+    padding-bottom: 13px;
 }
 .bold {
     font-weight: bold;
@@ -45,7 +45,7 @@ h3 {
     margin: 0 auto;
 }
 #head {
-    width: 95%;
+    max-width: 1200px;
     height: 94px;
     z-index: 100;
     background-color: white;
@@ -53,24 +53,24 @@ h3 {
     margin: 0 auto;
 }
 #content {
-    width: 95%;
+    max-width: 1200px;
     height: 700px;
     z-index: 100;
     margin: auto;
 }
 #footer {
-    width: 95%;
-    height: 540px;
+    max-width: 1200px;
     position: relative;
     left: 0;
     right: 0;
     z-index: 9999;
     margin: auto;
     background-color: white;
+    padding-top: 10px;
 }
 #head_container {
     float: left;
-    width: 100%;
+    width: 15%;
 }
 #logo {
     float: left;
@@ -87,7 +87,7 @@ h3 {
 }
 #title {
     float: left;
-    width: 100%;
+    width: 85%;
     text-align: center;
     text-transform: uppercase;
 }
@@ -146,9 +146,120 @@ input {
    }
 select{
     border-radius: 4px;
-    height:20px;
+    height:24px;
 }
-@media screen and (max-width: 1100px) {
+.box {
+    background-color: #029E73;
+    text-align: center;
+    color: #FEFEFE;
+    border-radius: 4px;
+}
+.input_part {
+    background-color: #BEDEEF;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.triplebox {
+    background-color:#00689D;
+    text-align: center;
+    color: #FEFEFE;
+    border-radius: 4px;
+}
+.footerboxResultHead
+{
+    margin-top: 20px;
+    background-color:#00689D;
+    text-align: center;
+    color: #FEFEFE;
+    border-radius: 4px;
+    width: 50%;
+    margin: auto;
+    line-height: 30px;
+    padding:2px;
+}
+.footerboxResult{
+    background-color: #BEDEEF;
+    text-align: center;
+    border-radius: 4px;
+    width: 50%;
+    margin: auto;
+    min-height: 100px;
+    padding:2px;
+}
+.globalResult
+{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 8px;
+}
+#resultGHG{
+    font-size: 26px;
+}
+#resultGHGProduction,  #resultGHGEnergy{
+    font-weight: bold;
+}
+.footerboxResultUserHead{
+    margin-top: 20px;
+    background-color:#029E73;
+    text-align: center;
+    color: #FEFEFE;
+    border-radius: 4px;
+    line-height: 30px;
+    padding:2px;
+}
+.footerboxResultUser{
+    background-color: #BEDEEF;
+    text-align: center;
+    border-radius: 4px;
+    min-height: 100px;
+    padding:2px;
+}
+#ResultPerUser{
+    font-size: 26px;
+}
+.footerGraphs{
+    margin-top: 20px;
+    background-color:#BEDEEF;
+    text-align: center;
+    border-radius: 4px;
+    line-height: 30px;
+    padding:2px;
+    font-weight: bold;
+    min-height: 140px;
+}
+#boxLeft{float: left; width: 40%}
+#boxRight{float: right; width: 40%}
+@media screen and (min-width: 1200px) {
+    body {
+        font-size: 16px;
+   }
+    select, input {
+        font-size: 14px;
+   }
+    .input_part {
+        float: left;
+        min-height: 130px;
+        padding-left: 20px;
+        margin: 0px 8px 8px 0;
+        width: 640px;
+   }
+    .triplebox {
+        float: left;
+        font-size: 12px;
+        min-height: 130px;
+        width: 300px;
+        margin: 0px 8px 8px 0;
+   }
+    .box {
+        float: left;
+        min-height: 130px;
+        width: 200px;
+        margin: 0px 8px 8px 0;
+        
+   }
+}
+@media screen and (max-width: 1200px) {
     body {
         font-size: 18px;
    }
@@ -163,9 +274,6 @@ select{
         min-height: 130px;
         width: 25%;
         margin: 0 1% 1% 0;
-        background-color: #4D4D4D;
-        text-align: center;
-        color: #FEFEFE;
    }
     .input_part {
         float: left;
@@ -173,48 +281,15 @@ select{
         padding-left: 20px;
         margin: 0px 1% 1% 0;
         width: 70%;
-        background-color: #D7D6DC;
    }
     .tooltip {
         display: none;
    }
+   #pan_chart{display: none;}
    
 }
-@media screen and (min-width: 1100px) {
-    body {
-        font-size: 16px;
-   }
-    select, input {
-        font-size: 14px;
-   }
-    .input_part {
-        float: left;
-        min-height: 130px;
-        padding-left: 20px;
-        margin: 0px 1% 1% 0;
-        width: 50%;
-        background-color: #D7D6DC;
-        font-size: 16px;
-   }
-    .triplebox {
-        float: left;
-        font-size: 12px;
-        min-height: 130px;
-        width: 30%;
-        margin: 0 1% 1% 0;
-        background-color: rgb(131, 131, 131);
-        text-align: center;
-        color: #FEFEFE;
-   }
-    .box {
-        float: left;
-        min-height: 130px;
-        width: 15%;
-        margin: 0 1% 1% 0;
-        background-color: #4D4D4D;
-        text-align: center;
-        color: #FEFEFE;
-   }
+@media screen and (min-width: 900px) {
+    
    /*Tooltip*/
    /* Tooltip container */
     .tooltip {

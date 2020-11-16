@@ -1,171 +1,696 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
-    <meta http-equiv="expires" content="Sun, 04 May 2020 00:00:01 GMT" />
-    <title>Country CO2 Digital Impact</title>
-    <link rel="shortcut icon" href="favicon.gif?v1.0">
-    <script src="./js/jquery-3.4.1.slim.min.js"></script>
-    <script src="./js/script.js"></script>
-
-    <link href="./css/global.css" rel="stylesheet">
-    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <!--
-	CO2 Calculator by Decathlon - Julien Gontier - 2020
-	CO2 calculator of digital impact on entreprise
-	Images are hosted in a css sprite to avoid http transfer
-	Jquery is used to make the code easy to read (just the slim js file)
-	External Font is not mandatory
--->
+    <title>Web Eco Design - Environmental Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script async="true" src="js/script.js" type="text/javascript"></script>
+    <link href="css/EcoConception.css" rel="stylesheet" />
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="shortcut icon"
+        href="http://sustainability.decathlon.com/wp-content/themes/decathlon_dd/images/favicon.gif?v1.0">
+    -->
 </head>
 
 <body>
-    <div class="container">
-        <a href="#" id="DisplayFactors">Display Factors</a>
-        <div id="FactorTabs">
-            <div class="factorDiv" id="storageFactorDiv">storageFactor <input type="text" id="storageFactor"
-                    class="factorClass" value="" />
+    <div id="page">
+        <div id="head">
+            <div id="head_container">
+                <div id="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="504 126 176 44" role="img"
+                        aria-labelledby="dkt-logo dkt-logo-desc" id="svg_logo">
+                        <desc id="dkt-logo-desc">Decathlon logo</desc>
+                        <path fill="#0082C3" d="M504 126h176v44H504z"></path>
+                        <path fill="#FFF"
+                            d="M534.98 145.82a10.47 10.47 0 0 0-3.3-6.44c-2.48-2.23-5.12-2.7-8.9-2.7h-8.13v22.6h8.93c3.35 0 5.59-.44 8.13-2.8a10.66 10.66 0 0 0 3.28-6.25v9.04h12.94v-4.96h-7.12v-4.1h6.16v-4.87h-6.16v-3.69h7.12v-4.98h-12.94v9.14zm-12.17 8.5h-2.34v-12.78h2.31c4.28 0 6.59 2.3 6.59 6.37 0 4.45-2.1 6.41-6.56 6.41zm43.47-3.75c-.85 1.35-2.71 3.49-5.52 3.45-4.58-.07-6.3-3.23-6.3-6.07a6.06 6.06 0 0 1 5.94-6.07c3.8-.08 6.63 3.57 6.63 3.57l2.97-4.8s-3.36-4.57-9.55-4.43c-9.3.21-12.02 8-12.02 11.62 0 7.62 5.86 11.42 10.65 11.88 6.89.67 10.66-3.84 10.66-3.84l.2-.01a405.38 405.38 0 0 1 5.05.01v3.4h5.6v-22.6h-6.09s-7.49 12.74-8.22 13.88zm8.82.59h-3l3-5.12v5.12zm6.7-9.09h4.53v17.22h5.81v-17.22h4.52v-5.4H581.8m27.86 8.59h-5.98v-8.59h-5.82v22.62h5.82v-8.65h5.98v8.65h5.82v-22.62h-5.82m53.88 0v12.57l-8.74-12.57h-5.26v7.7a11.65 11.65 0 0 0-3-4.81 11.66 11.66 0 0 0-8.2-3.36 11.6 11.6 0 0 0-8.36 3.33 11.33 11.33 0 0 0-3.48 8.22c0 2.48.6 4.66 1.78 6.54h-5.23v-17.61h-5.79v22.61h12.57v-3.02a11.4 11.4 0 0 0 8.47 3.5c3.2 0 6.23-1.24 8.46-3.54a11.4 11.4 0 0 0 2.79-4.7v7.76h5.82v-12.6l8.88 12.6h5.12v-22.61h-5.82zm-25.24 17.47a6.24 6.24 0 0 1-6.03-6.32 6 6 0 0 1 12 0c0 3.7-2.67 6.32-5.97 6.32z">
+                        </path>
+                    </svg>
+                </div>
             </div>
-            <div class="factorDiv" id="mailFactorDiv"> mailFactor <input type="text" id="mailFactor" class="factorClass"
-                    value="" /> </div>
-            <div class="factorDiv" id="visioFactorDiv">visioFactor <input type="text" id="visioFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="laptopFactorDiv">laptopFactor <input type="text" id="laptopFactor"
-                    class="factorClass" value="" />
+            <div id="title">
+                <h1 data-trad="trad_title">
+                    <img alt="logo"
+                        src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDgwIDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZmZkYTAwO30uY2xzLTJ7ZmlsbDojZWFiZDAwO30uY2xzLTMsLmNscy02e2ZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2Utd2lkdGg6NHB4O30uY2xzLTN7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO30uY2xzLTR7ZmlsbDojNDhlZjQ4O30uY2xzLTV7ZmlsbDojMmRkMzJkO30uY2xzLTZ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZS8+PHJlY3QgY2xhc3M9ImNscy0xIiBoZWlnaHQ9IjEwIiByeD0iMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE4LjM3NDcgNjQuMjYzNykgcm90YXRlKC01My4zNDUpIiB3aWR0aD0iNyIgeD0iNTEuMjc2MSIgeT0iNDUuNDIwNyIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU4LjQ3LDQ4LjgwNjlsLTIuODI1LTIuMTAyMmEyLjk5NTksMi45OTU5LDAsMCwxLC41NjE3LDQuMTQ4M2wtLjU5Ny44MDIyYTMsMywwLDAsMS00LjE5NzguNjE1OGwtLjM4MzYtLjI4NTVjLjAyLjAxNTIuMDMzOS4wMzQzLjA1MzguMDQ5MWwzLjIwODksMi4zODc5YTMsMywwLDAsMCw0LjE5NzctLjYxNTdsLjU5Ny0uODAyMkEzLDMsMCwwLDAsNTguNDcsNDguODA2OVoiLz48cmVjdCBjbGFzcz0iY2xzLTMiIGhlaWdodD0iMTAiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTguMzc0NyA2NC4yNjM3KSByb3RhdGUoLTUzLjM0NSkiIHdpZHRoPSI3IiB4PSI1MS4yNzYxIiB5PSI0NS40MjA3Ii8+PGxpbmUgY2xhc3M9ImNscy0zIiB4MT0iNTYuMjQ5OCIgeDI9IjU0LjM1NjciIHkxPSI0My40MTUyIiB5Mj0iNDUuOTU5MiIvPjxsaW5lIGNsYXNzPSJjbHMtMyIgeDE9IjYxLjA2MzMiIHgyPSI1OS4xNzAxIiB5MT0iNDYuOTk3MSIgeTI9IjQ5LjU0MTIiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik00My41NTE0LDQ2LjI3OTRDNTMuMTEzMiwzMy41NzE3LDY1LjMwMzMsMjAuMjc3LDYwLjE4LDE1LjMxNDljLTUuMTkxOS01LjI4OC0yMy45MzgzLDEuOTc0OC0zNS4xNjgsMTIuMjU4OS0xMS42OTg4LDkuODEwOS00LjIwNzUsMjAuNzMtMi4wNTE1LDIyLjkxMzRDMjUuNDEwNiw1Mi45MDY0LDM0LjU0OCw1OS4yMSw0My41NTE0LDQ2LjI3OTRaIi8+PHBhdGggY2xhc3M9ImNscy01IiBkPSJNNjAuMTgsMTUuMzE0OWMtMS44MzU4LTEuODctNS4zNy0yLjE2NDYtOS42NjM4LTEuMzE3M0E2LjU0MTIsNi41NDEyLDAsMCwxLDU0LjQzMTEsMTYuMDJjNC42OTkzLDUuMzY1OC04LjU0MDYsMTcuNjE1NC0xOS4xMTI5LDI5LjQ5NTYtMy42MTQ5LDQuMzc2Ni03LjA0LDYuMjU2LTEwLjA1MDcsNi43NTcyLDMuOTAyOCwyLjQxMzQsMTEuMTMzNyw0LjI3NTksMTguMjgzOS01Ljk5MzJDNTMuMTEzMiwzMy41NzE3LDY1LjMwMzMsMjAuMjc3LDYwLjE4LDE1LjMxNDlaIi8+PHBhdGggY2xhc3M9ImNscy02IiBkPSJNNDMuNTUxNCw0Ni4yNzk0QzUzLjExMzIsMzMuNTcxNyw2NS4zMDMzLDIwLjI3Nyw2MC4xOCwxNS4zMTQ5Yy01LjE5MTktNS4yODgtMjMuOTM4MywxLjk3NDgtMzUuMTY4LDEyLjI1ODktMTEuNjk4OCw5LjgxMDktNC4yMDc1LDIwLjczLTIuMDUxNSwyMi45MTM0QzI1LjQxMDYsNTIuOTA2NCwzNC41NDgsNTkuMjEsNDMuNTUxNCw0Ni4yNzk0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQ5LjU2MDYsMjIuOTMzM0ExNDMuNzc1NCwxNDMuNzc1NCwwLDAsMCwyMy4yNzQ2LDUwLjA2LDkuOTU4Miw5Ljk1ODIsMCwwLDAsMjQuMyw2My4wMDIyaDBhMTEuNzk4OSwxMS43OTg5LDAsMCwwLDguMzQzMSwzLjQ1NThoLjAwMThhMTcuNSwxNy41LDAsMCwwLDEyLjM3NDQtNS4xMjU2aDBxMy42MTQzLTMuNjE0Miw2Ljk3OTQtNy40NjUzbC42MDktLjY5NyIvPjxwYXRoIGNsYXNzPSJjbHMtNiIgZD0iTTM4LjY5ODgsMjQuOTI1N3EuODI1NiwyLjk0LDEuNjc3NCw1LjkyNzQsMy4wNy45MTMyLDYuMTQ3OCwxLjgxODMiLz48cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik0zMC44OSwyOS45MzEycTEuODQwOCwzLjI3NjQsMy43NCw2LjYyODIsMy4yOTc3LDEuODg3OCw2LjU1MjgsMy43MTQ5Ii8+PHBhdGggY2xhc3M9ImNscy02IiBkPSJNMjUuNjE5LDM3LjQ3OTRxMS40MjkzLDIuODg3MiwyLjk0NTcsNS44Njc3LDIuODE2NiwxLjQzMzMsNS41NjQ0LDIuNzg3MyIvPjwvc3ZnPg=="
+                        width="48">
+                    Country CO2 Digital Impact Calculator </h1>
             </div>
-            <div class="factorDiv" id="desktopFactorDiv">desktopFactor <input type="text" id="desktopFactor"
-                    class="factorClass" value="" />
-            </div>
-            <div class="factorDiv" id="thinclientFactorDiv">thinclientFactor <input type="text" id="thinclientFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="smallScreenFactorDiv">smallScreenFactor <input type="text" id="smallScreenFactor"
-                    class="factorClass" value=""></div>
-            <div class="factorDiv" id="bigScreenFactorDiv">bigScreenFactor <input type="text" id="bigScreenFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="smartphoneFactorDiv">smartphoneFactor <input type="text" id="smartphoneFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="tabletFactorDiv">tabletFactor <input type="text" id="tabletFactor"
-                    class="factorClass" value="" />
-            </div>
-            <div class="factorDiv" id="barcodeFactorDiv">barcodeFactor <input type="text" id="barcodeFactor"
-                    class="factorClass" value="" />
-            </div>
-            <div class="factorDiv" id="cashFactorDiv">cashFactor <input type="text" id="cashFactor" class="factorClass"
-                    value="" /></div>
-            <div class="factorDiv" id="kioskFactorDiv">kioskFactor <input type="text" id="kioskFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="printersFactorDiv">printersFactor <input type="text" id="printersFactor"
-                    class="factorClass" value="" />
-            </div>
-            <div class="factorDiv" id="paperFactorDiv">paperFactor <input type="text" id="paperFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="physicalServerFactorDiv">physicalServerFactor <input type="text"
-                    id="physicalServerFactor" class="factorClass" value="" /></div>
-            <div class="factorDiv" id="hostingBayFactorDiv">hostingBayFactor <input type="text" id="hostingBayFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="networkPaperFactorDiv">networkPaperFactor <input type="text"
-                    id="networkPaperFactor" class="factorClass" value="" /></div>
-            <div class="factorDiv" id="awsServerFactorDiv">awsServerFactor <input type="text" id="awsServerFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="gcpServerFactorDiv">gcpServerFactor <input type="text" id="gcpServerFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="azureServerFactorDiv">azureServerFactor <input type="text" id="azureServerFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="otherServerFactorDiv">otherServerFactor <input type="text" id="otherServerFactor"
-                    class="factorClass" value="" /></div>
-            <div class="factorDiv" id="DatabaseStorageServerFactorDiv">DatabaseStorageServerFactor <input type="text"
-                    id="DatabaseStorageServerFactor" class="factorClass" value="" /></div>
-            <div class="factorDiv" id="FileStorageServerFactorDiv">FileStorageServerFactor <input type="text"
-                    id="FileStorageServerFactor" class="factorClass" value="" /></div>
-            <div class="factorDiv" id="serverStorageFactorDiv">serverStorageFactor <input type="text"
-                    id="serverStorageFactor" class="factorClass" value="" /></div>
-            <div class="factorDiv" id="EcomFactorDiv">EcomFactor <input type="text" id="EcomFactor" class="factorClass"
-                    value="" /></div>
         </div>
         <div class="clear"></div>
-        <h1>COUNTRY</h1>
-        <select>
-            <option>FR</option>
-            <option>CN</option>
-        </select>
-        <div class="container">
-            <h1>CLOUD</h1>
-            <h3>Storage (To)</h3>
-            <input type="number" id="storage" class="input">
-            <h3>Mail</h3>
-            <input type="number" id="mail" class="input">
-            <h3>Visio</h3>
-            <input type="number" id="visio" class="input">
-        </div>
-        <div class="container">
-            <h1>USER DEVICES</h1>
-            <h3>Laptop</h3>
-            <input type="number" id="laptop" class="input">
-            <h3>Desktop (and screen)</h3>
-            <input type="number" id="desktop" class="input">
-            <h3>ThinClient (and screen)</h3>
-            <input type="number" id="thinclient" class="input">
-            <h3>Screen &#60;22'</h3>
-            <input type="number" id="smallScreen" class="input">
-            <h3>Screen > 22'</h3>
-            <input type="number" id="bigScreen" class="input">
-            <h1>Mobile Device</h1>
-            <h3>Smartphone</h3>
-            <input type="number" id="smartphone" class="input">
-            <h3>Tablet</h3>
-            <input type="number" id="tablet" class="input">
-            <h1>Store Device</h1>
-            <h3>Barcode Scanner</h3>
-            <input type="number" id="barcode" class="input">
-            <h3>Cash Register</h3>
-            <input type="number" id="cash" class="input">
-            <h3>Kiosk in Stores</h3>
-            <input type="number" id="kiosk" class="input">
-            <h3>Printers</h3>
-            <input type="number" id="printers" class="input">
-            <h3>Paper Ream</h3>
-            <input type="number" id="paper" class="input">
+        <div id="content">
+            <div id="pan_country">
+                <div class="input_part">
+                    <h2>
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <filter id="filter-1">
+                                    <feColorMatrix in="SourceGraphic" type="matrix"
+                                        values="0 0 0 0 0.000000 0 0 0 0 0.490196 0 0 0 0 0.737255 0 0 0 1.000000 0">
+                                    </feColorMatrix>
+                                </filter>
+                            </defs>
+                            <g id="icons/functional/map_pin_v2" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g filter="url(#filter-1)" id="map_pin_v2">
+                                    <g transform="translate(6.000000, 2.000000)">
+                                        <path
+                                            d="M11.2844,9.5427 L5.9974,19.9987 L0.7104,9.5427 C-1.1106,5.9547 0.6804,0.9227 4.8034,0.1307 C10.4414,-0.9543 13.5284,4.9257 11.2844,9.5427 Z"
+                                            id="Stroke-1" stroke="#000000" stroke-width="2"></path>
+                                        <path
+                                            d="M8.011,6.9983 C8.011,8.1023 7.115,8.9983 6.011,8.9983 C4.907,8.9983 4.011,8.1023 4.011,6.9983 C4.011,5.8943 4.907,4.9983 6.011,4.9983 C7.115,4.9983 8.011,5.8943 8.011,6.9983 Z"
+                                            id="Stroke-3" stroke="#000000" stroke-width="2"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        CHOOSE YOUR COUNTRY</h2>
 
-        </div>
-        <div class="container">
-            <h1>Store Servers</h1>
-            <h3>Physical Servers</h3>
-            <input type="number" id="physicalServer" class="input">
-            <h3>Hosting Bay</h3>
-            <input type="number" id="hostingBay" class="input">
-            <h3>Network Equipment</h3>
-            <input type="number" id="networkPaper" class="input">
-        </div>
-        <div class="container">
-            <h1>Electricity Consumption On Site</h1>
-        </div>
-        <div class="container">
-            <h1>Cloud Server</h1>
+                    <div class="clear"></div>
+                    <div class="question">Country</div>
+                    <div class="answer"><select id="country" class="globalData localStore">
+                            <option value="FR">France</option>
+                            <option value="ES">Spain</option>
+                            <option value="IT">Italy</option>
+                            <option value="CN">China</option>
+                            <option value="DE">Germany</option>
+                            <option value="EU" selected>EU</option>
+                            <option value="US">United States</option>
+                        </select>
+                    </div>
+                    <div class="tooltip">&nbsp;
+                        <span class="tooltiptext">Your Country will be used to calculate energy emission factors</span>
+                    </div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="question">Number of teammates in the country</div>
+                    <div class="answer"><input type="number" value="200" id="users" class="globalData localStore"></div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="clear"></div>
 
-            <h3>Aws Server</h3>
-            <input type="number" id="awsServer" class="input">
-            <h3>GCP Server</h3>
-            <input type="number" id="gcpServer" class="input">
-            <h3>Microsoft Server</h3>
-            <input type="number" id="azureServer" class="input">
-            <h3>Other Cloud Provider</h3>
-            <input type="number" id="otherServer" class="input">
+                </div>
+                <div id="pan_chart" style="width: 40%;float: left;">
+                    <div id="chart_div"> </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="pan_cloud">
+                <div class="input_part">
+                    <h2>
+                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/logo/android</title>
+                            <g id="icons/logo/android" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="android-logo-(1)" transform="translate(2.000000, 0.000000)" fill="#007DBC"
+                                    fill-rule="nonzero">
+                                    <path
+                                        d="M22.3573141,10.7119134 L22.3573141,23.4981083 C22.3573141,24.0873357 22.1525487,24.5861661 21.7432491,24.9955235 C21.3331408,25.4048809 20.840722,25.6095884 20.2648953,25.6095884 L20.2648953,25.6095884 L18.8250108,25.6095884 L18.8250108,29.9675379 C18.8250108,30.5179495 18.6331264,30.9852419 18.2491841,31.3691841 C17.8652419,31.7531264 17.3979495,31.9450686 16.8478845,31.9450686 C16.2974152,31.9450686 15.8305271,31.7531264 15.4465848,31.3691841 C15.0626426,30.9852419 14.8707581,30.5178917 14.8707581,29.9675379 L14.8707581,29.9675379 L14.8707581,25.6095884 L12.221574,25.6095884 L12.221574,29.9675379 C12.221574,30.5179495 12.0296318,30.9852419 11.6456895,31.3691841 C11.2617473,31.7531264 10.7944549,31.9450686 10.2443899,31.9450686 C9.70709025,31.9450686 9.24609386,31.7531264 8.86220939,31.3691841 C8.47832491,30.9852419 8.28638267,30.5178917 8.28638267,29.9675379 L8.28638267,29.9675379 L8.26691697,25.6091841 L6.84620939,25.6091841 C6.25732852,25.6091841 5.75849819,25.4045343 5.34879422,24.9951769 C4.93943682,24.5858195 4.734787,24.0869892 4.734787,23.497704 L4.734787,23.497704 L4.734787,10.7119134 L22.3573141,10.7119134 Z M2.0086065,10.3474946 C2.54625271,10.3474946 3.00719134,10.5394368 3.39113357,10.9233213 C3.77507581,11.3072058 3.96701805,11.7677978 3.96701805,12.3055018 L3.96701805,12.3055018 L3.96701805,20.5604621 C3.96701805,21.1115668 3.77790614,21.5782238 3.40072202,21.9621083 C3.022787,22.3460505 2.55861372,22.5379928 2.0086065,22.5379928 C1.45819495,22.5379928 0.991191336,22.3459928 0.607306859,21.9621083 C0.223364621,21.5781661 0.0314223827,21.1115668 0.0314223827,20.5604621 L0.0314223827,20.5604621 L0.0314223827,12.3055018 C0.0314223827,11.7678556 0.223422383,11.3072058 0.607306859,10.9233213 C0.991191336,10.5394368 1.45819495,10.3474946 2.0086065,10.3474946 Z M25.0844765,10.3474946 C25.6345415,10.3474946 26.1018339,10.5366065 26.4857762,10.9137906 C26.8697184,11.2916679 27.0616029,11.7557834 27.0616029,12.3055018 L27.0616029,12.3055018 L27.0616029,20.5604621 C27.0616029,21.1115668 26.8697184,21.5781661 26.4857762,21.9621083 C26.1018339,22.3460505 25.6345415,22.5379928 25.0844765,22.5379928 C24.5471191,22.5379928 24.0861805,22.3460505 23.7022383,21.9621083 C23.318296,21.5781661 23.1264116,21.1115668 23.1264116,20.5604621 L23.1264116,20.5604621 L23.1264116,12.3055018 C23.1264116,11.7558412 23.3183538,11.2916679 23.7022383,10.9137906 C24.0861805,10.5366065 24.5467726,10.3474946 25.0844765,10.3474946 Z M18.7879278,0.153530686 C18.877343,0.000462093863 19.0052852,-0.0387581227 19.1718123,0.0386425993 C19.3252274,0.128404332 19.3570542,0.256057762 19.2675812,0.422527076 L19.2675812,0.422527076 L17.9045199,2.93701083 C19.2736462,3.64187726 20.3681155,4.62353791 21.1872347,5.88412996 C22.0062383,7.14570397 22.416,8.5240722 22.416,10.0214874 L22.416,10.0214874 L4.65854152,10.0214874 C4.65854152,8.52372563 5.06824549,7.14541516 5.88730686,5.88412996 C6.70636823,4.62353791 7.80719134,3.64187726 9.18937184,2.93701083 L9.18937184,2.93701083 L7.82625271,0.422527076 C7.73643321,0.256057762 7.76825993,0.128808664 7.92202166,0.0386425993 C8.0881444,-0.0384115523 8.21608664,0.000462093863 8.30590614,0.153530686 L8.30590614,0.153530686 L9.68808664,2.68811552 C10.9037978,2.15046931 12.1902094,1.88106859 13.546917,1.88106859 C14.9033357,1.88106859 16.1896318,2.15041155 17.4058051,2.68811552 L17.4058051,2.68811552 Z M9.49579783,5.31823827 C9.29114801,5.31823827 9.11826715,5.39176895 8.97755957,5.53883032 C8.83685199,5.68623827 8.76649819,5.86194946 8.76649819,6.06659928 C8.76649819,6.27194224 8.83685199,6.44730686 8.97755957,6.59436823 C9.11826715,6.74212274 9.29074368,6.81565343 9.49579783,6.81565343 C9.70044765,6.81565343 9.87650542,6.74212274 10.0239134,6.59436823 C10.1706282,6.44730686 10.2444477,6.27159567 10.244852,6.06659928 C10.244852,5.86194946 10.1709747,5.68658484 10.0239134,5.53883032 C9.87650542,5.39176895 9.70044765,5.31823827 9.49579783,5.31823827 Z M17.597343,5.31823827 C17.392231,5.31823827 17.216231,5.39176895 17.0691119,5.53883032 C16.9217617,5.68623827 16.848231,5.86194946 16.848231,6.06659928 C16.848231,6.27194224 16.9217617,6.44730686 17.0691119,6.59436823 C17.216231,6.74212274 17.392231,6.81565343 17.597343,6.81565343 C17.8016462,6.81565343 17.9745271,6.74212274 18.1155235,6.59436823 C18.2562888,6.44730686 18.3265848,6.27159567 18.3265848,6.06659928 C18.3265848,5.86194946 18.2563466,5.68658484 18.1155235,5.53883032 C17.9744693,5.39176895 17.8019928,5.31823827 17.597343,5.31823827 Z"
+                                        id="Combined-Shape"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        GOOGLE APP</h2>
+                    <div id="api_display">
+                        <div class="question">Storage (To)</div>
+                        <div class="answer"><input type="number" id="storage" class="score localStore"></div>
+                        <div class="answer2">&nbsp;</div>
+                        <div class="question">Mail</div>
+                        <div class="answer"><input type="number" id="mail" class="score localStore">
+                        </div>
+                        <div class="answer2">&nbsp;</div>
+                        <div class="question">Visio</div>
+                        <div class="answer"><input type="number" id="visio" class="score localStore">
+                        </div>
+                        <div class="answer2">&nbsp;</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+                    <div class="line31">Google Drive storage</div>
+                    <div class="line31">Number of email send by your country</div>
+                    <div class="line31">Optional: Number of visio </div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="storage_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="mail_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="visio_result"></span><span
+                            class="unit"></span></div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+            <!--User Devices-->
+            <div id="pan_user_device">
+                <div class="input_part">
+                    <h2><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/media/desktop</title>
+                            <g id="icons/media/desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path
+                                    d="M8.1801961,8 L6,8 L6,21 L10.7801961,21 L8.1801961,8 L8.1801961,8 Z M10.2198039,8 L12.8198039,21 L26,21 L26,8 L10.2198039,8 Z M2,24 L30,24 L28,27 L4,27 L2,24 Z M5,6 L27,6 C27.5522847,6 28,6.44771525 28,7 L28,22 C28,22.5522847 27.5522847,23 27,23 L5,23 C4.44771525,23 4,22.5522847 4,22 L4,7 C4,6.44771525 4.44771525,6 5,6 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        USER DEVICES</h2>
+                    <div class="question">Laptop</div>
+                    <div class="answer"><input type="number" id="laptop" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="laptop_lifespan" class="lifespan localStore">
+                            <option value="2">2 years</option>
+                            <option value="3" selected>3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Desktop (and screen)</div>
+                    <div class="answer"><input type="number" id="desktop" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="desktop_lifespan" class="lifespan localStore">
+                            <option value="2">2 years</option>
+                            <option value="3" selected>3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                    <div class="question">ThinClient (and screen)</div>
+                    <div class="answer"><input type="number" id="thinclient" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="thinclient_lifespan" class="lifespan localStore">
+                            <option value="2">2 years</option>
+                            <option value="3" selected>3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Screen &#60;22'</div>
+                    <div class="answer"><input type="number" id="smallScreen" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="smallScreen_lifespan" class="lifespan localStore">
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5" selected>5 years</option>
+                            <option value="6">6 years</option>
+                            <option value="7">7 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Screen > 22'</div>
+                    <div class="answer"><input type="number" id="bigScreen" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="bigScreen_lifespan" class="lifespan localStore">
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5" selected>5 years</option>
+                            <option value="6">6 years</option>
+                            <option value="7">7 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+                    <div class="line31">Number of laptop</div>
+                    <div class="line31">Number of desktop plus screen</div>
+                    <div class="line31">Number of thinclient</div>
+                    <div class="line31">Number of small screen</div>
+                    <div class="line31">Number of big screen</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 laptop_display"><span class="totalGHG devices" id="laptop_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 desktop_display"><span class="totalGHG devices" id="desktop_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 thinclient_display"><span class="totalGHG devices"
+                            id="thinclient_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 smallScreen_display"><span class="totalGHG devices"
+                            id="smallScreen_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 bigScreen_display"><span class="totalGHG devices"
+                            id="bigScreen_result"></span><span class="unit"></span></div>
+                </div>
+            </div>
+            <!--User Devices-->
+            <div id="pan_mobile_device" class="complete">
+                <div class="input_part complete">
+                    <h2><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/media/mobile</title>
+                            <g id="icons/media/mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path
+                                    d="M25.0001796,20.9822105 C25.0001796,20.9948543 25.0001796,21.0074637 25.0001796,21.0200333 L25.0001796,29.0508475 C25.0001796,29.5750499 24.5522847,30 24,30 L8,30 C7.44771525,30 6.99982037,29.5750499 6.99982037,29.0508475 L6.99982037,24.0177895 C6.99982037,24.0051457 6.99982037,23.9925363 6.99982037,23.9799667 L6.99982037,2.94915254 C6.99982037,2.42495007 7.44771525,2 8,2 L24,2 C24.5522847,2 25.0001796,2.42495007 25.0001796,2.94915254 L25.0001796,20.9822105 L25.0001796,20.9822105 Z M23,20.1700737 L23,4 L9,4 L9,22.7950737 L23,20.1700737 Z M23,22.2049263 L9,24.8299263 L9,28 L23,28 L23,22.2049263 Z M17,26 C17,26.5520446 16.5522851,27 15.9998451,27 C15.4477149,27 15,26.5520446 15,26 C15,25.4476456 15.4477149,25 15.9998451,25 C16.5522851,25 17,25.4476456 17,26 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        MOBILE DEVICES</h2>
+                    <div class="question">Smartphone</div>
+                    <div class="answer"><input type="number" id="smartphone" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="smartphone_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2" selected>2 years</option>
+                            <option value="3">3 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Tablet</div>
+                    <div class="answer"><input type="number" id="tablet" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="tablet_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2" selected>2 years</option>
+                            <option value="3">3 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+                    <div class="line31">Number of smartphone used in stores and services</div>
+                    <div class="line31">Number of tablet used in stores</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 smartphone_display"><span class="totalGHG mobile_devices"
+                            id="smartphone_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 tablet_display"><span class="totalGHG mobile_devices" id="tablet_result"></span><span
+                            class="unit"></span></div>
+                </div>
+            </div>
+            <!--User Devices-->
+            <div id="pan_store_device" class="complete">
+                <div class="input_part complete">
+                    <h2>
+                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/delivery/ship_from_store</title>
+                            <g id="icons/delivery/ship_from_store" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
+                                <path
+                                    d="M10.0002711,28 L22.0002711,28 L22.0002711,19 L10.0002711,19 L10.0002711,28 Z M9.63287795,8.78171946 L9.63287795,9.79128841 L11.0892884,9.79128841 L11.0892884,9.23365117 L10.2881004,9.23365117 L10.2881004,8.77242784 L10.9822471,8.7717764 L10.9822471,8.22521373 L10.2881004,8.22586517 L10.2881004,7.81024302 L11.0892884,7.80959158 L11.0892884,7.25 L9.63287795,7.25 L9.63287795,8.26848902 C9.64596523,8.35226684 9.6525995,8.44040349 9.6525995,8.53269595 C9.6525995,8.61916494 9.6460014,8.70220688 9.63287795,8.78171946 L9.63287795,8.78171946 Z M22.5227263,8.91908661 L22.5227263,8.11437861 C22.4588735,7.91438696 22.3448911,7.72979127 22.1839568,7.57259575 C21.9322476,7.32830373 21.6059338,7.19540888 21.2614555,7.19540888 C20.8942714,7.19540888 20.5750937,7.32113784 20.3214382,7.56933852 C20.0664853,7.81688777 19.9296022,8.14130756 19.9296022,8.49373951 C19.9296022,8.77258409 19.9967348,9.01772214 20.1294355,9.22967735 L20.3049604,9.22967735 L20.3049604,9.45272485 C20.5578755,9.71270062 20.880826,9.84614011 21.2575631,9.84614011 C21.6176111,9.84614011 21.9588458,9.70542791 22.2092575,9.4468041 C22.3562397,9.29684636 22.462017,9.11811496 22.5227263,8.91908661 L22.5227263,8.91908661 Z M20.1294355,9.22967735 L19.5413991,9.22967735 L19.5413991,7.24928341 L18.890069,7.24928341 L18.890069,9.79187471 L20.3049604,9.79187471 L20.3049604,9.45272485 C20.3017922,9.44946823 20.298635,9.44619175 20.2954888,9.44289543 C20.2319205,9.37598931 20.176546,9.30492443 20.1294355,9.22967735 L20.1294355,9.22967735 Z M27.2881464,20.9740963 L24.0002711,22.618034 L24.0002711,29 C24.0002711,29.5522847 23.5525558,30 23.0002711,30 L9.00027108,30 C8.44798633,30 8.00027108,29.5522847 8.00027108,29 L8.00027108,28.3874259 L3.33864332,29.9413018 C3.28148727,29.9618508 3.22191868,29.977342 3.16047737,29.9872356 C3.15133819,29.9887302 3.14219916,29.990094 3.13306252,29.9913283 C3.08961727,29.9970249 3.04529161,30 3.00027108,30 C2.93683191,30 2.87477247,29.9940927 2.81461283,29.9827981 C2.6704241,29.9554236 2.53405654,29.8965904 2.41551768,29.811302 C2.29712077,29.7258167 2.19818341,29.6150518 2.12661722,29.4869189 C2.0968781,29.4334181 2.07164901,29.3764114 2.05158778,29.3162278 C2.03434335,29.2644945 2.0215622,29.212348 2.01303543,29.1602063 C2.01157044,29.1511084 2.01022818,29.1419694 2.00901041,29.1327911 C2.00188262,29.0805282 1.99906223,29.0283432 2,28.9766577 L2,3 C2,2.44771525 2.44798633,2 3.00027108,2 L29.0002711,2 C29.5525558,2 30.0004901,2.44771525 30.0004901,3 L30.0004901,14 C30.0004901,14.5522847 29.5525558,15 29.0002711,15 C28.4479863,15 28.0002711,14.5522847 28.0002711,14 L28.0002711,4 L4.00027108,4 L4.00027108,27.6125741 L8.00027108,26.2792408 L8.00027108,18.0101013 C8.00023463,18.0067348 8.0002151,18.0033676 8.00021252,18 C8.00027108,17.7712362 8.07708687,17.5604136 8.20633184,17.391919 L11.1932883,13.4093103 C11.1955826,13.4061813 11.1978946,13.4030661 11.2002243,13.3999648 C11.3990662,13.1349399 11.7041869,12.9966673 12.011909,13 L19.9886332,13 C20.2963552,12.9966673 20.601476,13.1349399 20.8002711,13.4 C20.8026475,13.4030661 20.8049596,13.4061813 20.8072538,13.4093103 L23.7942103,17.391919 C23.9234553,17.5604136 24.0002711,17.7712362 24.0002711,18 C24.0003271,18.0033676 24.0003075,18.0067348 24.0002711,18.0101013 L24.0002711,20.381966 L26.3937192,19.1852419 L25.6840433,18.9486833 C25.1601,18.7740355 24.87694,18.2077156 25.0515878,17.6837722 C25.2262356,17.1598289 25.7925555,16.8766689 26.3164988,17.0513167 L29.3164988,18.0513167 C29.5592881,18.1322464 29.7712036,18.3057972 29.8946983,18.5527864 C30.0181929,18.7997757 30.0298841,19.0734385 29.9489544,19.3162278 L28.9489544,22.3162278 C28.7743066,22.8401711 28.2079866,23.1233311 27.6840433,22.9486833 C27.1601,22.7740355 26.87694,22.2077156 27.0515878,21.6837722 L27.2881464,20.9740963 L27.2881464,20.9740963 Z M17.0002711,15 L17.0002711,17 L21.0002711,17 L19.5002711,15 L17.0002711,15 Z M15.0002711,15 L12.5002711,15 L11.0002711,17 L15.0002711,17 L15.0002711,15 L15.0002711,15 Z M6.00027108,10.997202 L6.00027108,6 L26.0002711,6 L26.0002711,10.997202 L6.00027108,10.997202 Z M14.0799574,7.24680792 C14.0799574,7.24680792 13.2372504,8.67998775 13.1548611,8.80897393 C13.0588483,8.9607607 12.8493068,9.20114405 12.5333728,9.19788682 C12.0182771,9.18941803 11.8243053,8.8343803 11.8243053,8.51452062 C11.8243053,8.15166555 12.1136412,7.83962321 12.4925025,7.83245731 C12.9200189,7.82398852 13.2391966,8.23309622 13.2391966,8.23309622 L13.5732952,7.69435089 C13.5732952,7.69435089 13.1944339,7.18036049 12.4989898,7.19599518 C11.4512826,7.21944721 11.146377,8.09629269 11.146377,8.5027946 C11.146377,9.35879383 11.8061407,9.786142 12.3445909,9.83825763 C13.1198294,9.91317384 13.5441022,9.40700079 13.5441022,9.40700079 C13.5441022,9.40700079 13.5389123,9.4056979 13.5655104,9.40504645 C13.7218556,9.40374356 14.1338024,9.40700079 14.1338024,9.40700079 L14.1338024,9.78809633 L14.764373,9.78809633 L14.764373,7.24680792 L14.0799574,7.24680792 Z M14.1474258,8.87542136 L13.8094348,8.87542136 L14.1474258,8.29954365 L14.1474258,8.87542136 Z M15.4100591,9.79252616 L16.0646328,9.79252616 L16.0646328,7.8564305 L16.5725924,7.8564305 L16.5725924,7.24863196 L14.9014507,7.24863196 L14.9014507,7.8564305 L15.4100591,7.8564305 L15.4100591,9.79252616 Z M18.0354253,8.81913648 L18.0354253,9.79239587 L18.6906478,9.79239587 L18.6906478,7.24915312 L18.0354253,7.24915312 L18.0354253,8.21459517 L17.3620382,8.21459517 L17.3620382,7.24915312 L16.7074645,7.24915312 L16.7074645,9.79239587 L17.3620382,9.79239587 L17.3620382,8.81913648 L18.0354253,8.81913648 Z M21.2575631,9.21228376 C20.9020562,9.21228376 20.5789861,8.9041501 20.5789861,8.50090541 C20.5789861,8.12697577 20.8806479,7.82796234 21.2653479,7.82796234 C21.6279908,7.82796234 21.9296527,8.12697577 21.9296527,8.50090541 C21.9296527,8.91783045 21.6279908,9.21228376 21.2575631,9.21228376 Z M22.5227263,8.91908661 L22.5227263,9.79220044 L23.1785976,9.79220044 L23.1785976,8.37530674 L24.1776497,9.79220044 L24.7530778,9.79220044 L24.7530778,7.24895769 L24.0978553,7.24895769 L24.0978553,8.66129126 L23.1143728,7.24895769 L22.5227263,7.24895769 L22.5227263,8.11437861 C22.5626034,8.23927652 22.582929,8.37017917 22.582929,8.50416264 C22.582929,8.64959315 22.5624993,8.78869566 22.5227263,8.91908661 L22.5227263,8.91908661 Z M9.63287795,8.78171946 L9.63287795,8.26848902 C9.58665956,7.97262342 9.45996022,7.73112047 9.26076347,7.5529221 C8.98245609,7.30276708 8.68598413,7.24934855 8.26041387,7.24934855 L7.34569731,7.24934855 L7.34569731,9.79193986 L8.34993932,9.79193986 C8.72620571,9.79193986 8.97856368,9.74177857 9.26400714,9.47729174 C9.46340328,9.29071457 9.58737135,9.05743564 9.63287795,8.78171946 L9.63287795,8.78171946 Z M9.00126941,8.51184969 C9.00126941,9.01215974 8.76448108,9.23365117 8.26300881,9.23365117 L8.00027108,9.23365117 L8.00027108,7.79591123 L8.26041387,7.79591123 C8.74177535,7.79591123 9.00126941,8.05388359 9.00126941,8.51184969 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        STORES DEVICES</h2>
+                    <div class="question">Barcode Scanner</div>
+                    <div class="answer"><input type="number" id="barcode" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="barcode_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2" selected>2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Cash Register</div>
+                    <div class="answer"><input type="number" id="cash" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="cash_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2">2 years</option>
+                            <option value="3" selected>3 years</option>
+                            <option value="4">4 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Kiosk in Stores</div>
+                    <div class="answer"><input type="number" id="kiosk" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="kiosk_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2" selected>2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Printers</div>
+                    <div class="answer"><input type="number" id="printers" class="score localStore"></div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="printers_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4" selected>4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Paper Ream</div>
+                    <div class="answer"><input type="number" id="paper" class="score"></div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+                    <div class="line31">Number of barcode scanner used in cash register</div>
+                    <div class="line31">Number of cash register</div>
+                    <div class="line31">Number of kiosk tablet in stores</div>
+                    <div class="line31">Number of network printers used</div>
+                    <div class="line31">Number of paper ream used per year</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 barcode_display"><span class="totalGHG store_devices" id="barcode_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 cash_display"><span class="totalGHG store_devices" id="cash_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 kiosk_display"><span class="totalGHG store_devices" id="kiosk_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 printers_display"><span class="totalGHG store_devices" id="printers_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 paper_display"><span class="totalGHG store_devices" id="paper_result"></span><span
+                            class="unit"></span></div>
+                </div>
+            </div>
+            <!--Stores Devices-->
+            <div id="pan_stores_servers" class="complete">
+                <div class="input_part complete">
+                    <h2><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/standard/store</title>
+                            <g id="icons/standard/store" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path
+                                    d="M10.9060855,8.22537557 L10.9060855,9.03303073 L12.0712138,9.03303073 L12.0712138,8.58692094 L11.4302635,8.58692094 L11.4302635,8.21794228 L11.9855808,8.21742112 L11.9855808,7.78017098 L11.4302635,7.78069214 L11.4302635,7.44819442 L12.0712138,7.44767326 L12.0712138,7 L10.9060855,7 L10.9060855,7.81479121 C10.8691108,7.57809873 10.7677513,7.38489637 10.6083939,7.24233768 C10.385748,7.04221366 10.1485704,6.99947884 9.80811424,6.99947884 L9.07634099,6.99947884 L9.07634099,9.03355189 L9.8797346,9.03355189 C10.1807477,9.03355189 10.3826341,8.99342285 10.6109889,8.78183339 C10.7705058,8.63257166 10.8696802,8.44594851 10.9060855,8.22537557 L10.9060855,8.22537557 Z M21.2179642,8.33526929 L21.2179642,9.03376035 L21.7426612,9.03376035 L21.7426612,7.90024539 L22.5419029,9.03376035 L23.0022454,9.03376035 L23.0022454,6.99916615 L22.4780674,6.99916615 L22.4780674,8.12903301 L21.6912814,6.99916615 L21.2179642,6.99916615 L21.2179642,7.69150288 C21.166882,7.53150957 21.075696,7.38383302 20.9469486,7.2580766 C20.7455812,7.06264299 20.4845302,6.9563271 20.2089475,6.9563271 C19.9152002,6.9563271 19.6598581,7.05691027 19.4569337,7.25547082 C19.2529714,7.45351021 19.1434649,7.71304605 19.1434649,7.99499161 C19.1434649,8.21806727 19.197171,8.41417771 19.3033315,8.58374188 L18.8329024,8.58374188 L18.8329024,6.99942673 L18.3118383,6.99942673 L18.3118383,9.03349977 L19.4437514,9.03349977 L19.4437514,8.76217988 C19.6460836,8.9701605 19.904444,9.07691209 20.2058336,9.07691209 C20.493872,9.07691209 20.7668597,8.96434233 20.9671892,8.75744328 C21.0847749,8.63747709 21.1693967,8.49449197 21.2179642,8.33526929 L21.2179642,8.33526929 Z M21,24.5201383 L28,23.1739844 L28,4 L4,4 L4,27.7893691 L11.0945595,26.4250307 C11.0339034,26.2960394 11,26.151979 11,26 L11,18 C11,17.4477153 11.4477153,17 12,17 L20,17 C20.5522847,17 21,17.4477153 21,18 L21,24.5201383 Z M19,24.9047537 L19,19 L13,19 L13,26 C13,26.0197821 12.9994256,26.0394301 12.9982925,26.0589282 L19,24.9047537 L19,24.9047537 Z M3,2 L29,2 C29.5522847,2 30,2.44771525 30,3 L30,24 C30,24.4794675 29.6596876,24.8914603 29.1888474,24.9820064 L3.18884739,29.9820064 C2.57212093,30.1006077 2,29.6280269 2,29 L2,3 C2,2.44771525 2.44771525,2 3,2 Z M8,9.99776162 L8,6 L24,6 L24,9.99776162 L8,9.99776162 Z M14.463749,6.99744633 C14.463749,6.99744633 13.7895835,8.1439902 13.723672,8.24717914 C13.6468617,8.36860856 13.4792286,8.56091524 13.2264814,8.55830946 C12.8144048,8.55153442 12.6592274,8.26750424 12.6592274,8.0116165 C12.6592274,7.72133244 12.8906961,7.47169857 13.1937851,7.46596585 C13.5357983,7.45919082 13.7911404,7.78647697 13.7911404,7.78647697 L14.0584193,7.35548071 C14.0584193,7.35548071 13.7553303,6.94428839 13.198975,6.95679614 C12.3608092,6.97555777 12.1168848,7.67703415 12.1168848,8.00223568 C12.1168848,8.68703506 12.6446957,9.0289136 13.0754558,9.0706061 C13.6956466,9.13053908 14.0350649,8.72560063 14.0350649,8.72560063 C14.0350649,8.72560063 14.030913,8.72455832 14.0521915,8.72403716 C14.1772676,8.72299485 14.5068251,8.72560063 14.5068251,8.72560063 L14.5068251,9.03047707 L15.0112815,9.03047707 L15.0112815,6.99744633 L14.463749,6.99744633 Z M14.5177238,8.30033709 L14.247331,8.30033709 L14.5177238,7.83963492 L14.5177238,8.30033709 Z M15.5278304,9.03402093 L16.0514894,9.03402093 L16.0514894,7.4851444 L16.4578571,7.4851444 L16.4578571,6.99890557 L15.1209437,6.99890557 L15.1209437,7.4851444 L15.5278304,7.4851444 L15.5278304,9.03402093 Z M17.6281234,8.25530918 L17.6281234,9.0339167 L18.1523014,9.0339167 L18.1523014,6.9993225 L17.6281234,6.9993225 L17.6281234,7.77167614 L17.0894137,7.77167614 L17.0894137,6.9993225 L16.5657547,6.9993225 L16.5657547,9.0339167 L17.0894137,9.0339167 L17.0894137,8.25530918 L17.6281234,8.25530918 Z M20.2058336,8.56982701 C19.9214281,8.56982701 19.662972,8.32332008 19.662972,8.00072433 C19.662972,7.70158061 19.9043015,7.46236987 20.2120614,7.46236987 C20.5021758,7.46236987 20.7435053,7.70158061 20.7435053,8.00072433 C20.7435053,8.33426436 20.5021758,8.56982701 20.2058336,8.56982701 Z M10.4007987,8.00947976 C10.4007987,8.40972779 10.211368,8.58692094 9.81019019,8.58692094 L9.6,8.58692094 L9.6,7.43672898 L9.80811424,7.43672898 C10.1932034,7.43672898 10.4007987,7.64310688 10.4007987,8.00947976 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        STORES SERVERS</h2>
+                    <div class="question">Physical Servers</div>
+                    <div class="answer"><input type="number" id="physicalServer" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="physicalServer_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4" selected>4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Hosting Bay</div>
+                    <div class="answer"><input type="number" id="hostingBay" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="hostingBay_lifespan" class="lifespan localStore">
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5" selected>5 years</option>
+                            <option value="6">6 years</option>
+                            <option value="7">7 years</option>
+                            <option value="8">8 years</option>
+                            <option value="9">9 years</option>
+                            <option value="10">10 years</option>
+                        </select>
+                    </div>
+                    <div class="question">Network Equipment</div>
+                    <div class="answer"><input type="number" id="networkEquipment" class="score localStore">
+                    </div>
+                    <div class="answer2">Lifespan: &nbsp;
+                        <select id="networkEquipment_lifespan" class="lifespan localStore">
+                            <option value="1">1 years</option>
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4" selected>4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+                    <div class="line31">Number of physical server in stores (or specific DataCenter)</div>
+                    <div class="line31">Number of hosting bay in stores (or specific DataCenter)</div>
+                    <div class="line31">Number of network devices</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 physicalServer_display"><span class="totalGHG store_servers"
+                            id="physicalServer_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 hostingBay_display"><span class="totalGHG store_servers"
+                            id="hostingBay_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 networkEquipment_display"><span class="totalGHG store_servers"
+                            id="networkEquipment_result"></span>
+                        <span class="unit"></span>
+                    </div>
+                </div>
+            </div>
+            <!--Cloud Servers-->
+            <div id="pan_cloud_servers" class="complete">
+                <div class="input_part complete">
+                    <h2>
+                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/products/technicity</title>
+                            <g id="icons/products/technicity" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
+                                <path
+                                    d="M26.9981,21.0576 L16.0001,27.8256 L5.0021,21.0576 L7.3001,19.8206 L9.6321,21.2546 L9.6311,21.2546 L10.7161,21.9226 L11.8831,22.6406 L15.4761,24.8516 C15.7971,25.0496 16.2031,25.0496 16.5241,24.8516 L24.7001,19.8206 L26.9981,21.0576 Z M16.0001,4.1356 L26.9981,10.0576 L16.0001,16.8256 L5.0021,10.0576 L16.0001,4.1356 Z M23.8331,14.3536 L25.1011,15.0366 L20.8321,16.2006 L23.8331,14.3536 Z M8.8561,18.4296 L12.9681,17.3086 L14.1361,18.0266 L10.0241,19.1476 L9.3351,18.7246 L8.8561,18.4296 Z M10.7161,15.9226 L11.8831,16.6406 L7.7721,17.7626 L7.3671,17.5126 L6.6041,17.0436 L10.7161,15.9226 Z M8.4641,14.5366 L9.6311,15.2546 L5.5201,16.3766 L5.0021,16.0576 L7.1721,14.8896 L8.4641,14.5366 Z M12.2761,20.5346 L11.1081,19.8156 L15.2201,18.6946 L15.4761,18.8516 C15.7971,19.0496 16.2031,19.0496 16.5241,18.8516 L18.0211,17.9306 L26.2891,15.6756 L26.9981,16.0576 L25.6531,16.8856 L12.2761,20.5346 Z M19.8161,20.4776 L14.5281,21.9196 L13.3601,21.2016 L22.8411,18.6166 L22.6651,18.7246 L19.8161,20.4776 Z M27.5391,18.0736 L29.5241,16.8516 C30.1801,16.4476 30.1521,15.4846 29.4741,15.1196 L25.8021,13.1416 L29.5241,10.8516 C30.1801,10.4476 30.1521,9.4846 29.4741,9.1196 L16.4741,2.1196 C16.1781,1.9596 15.8221,1.9596 15.5261,2.1196 L2.5261,9.1196 C1.8481,9.4846 1.8201,10.4476 2.4761,10.8516 L6.1981,13.1416 L2.5261,15.1196 C1.8481,15.4846 1.8201,16.4476 2.4761,16.8516 L5.1271,18.4836 L5.3311,18.6086 L2.5261,20.1196 C1.8481,20.4846 1.8201,21.4476 2.4761,21.8516 L15.4761,29.8516 C15.7971,30.0496 16.2031,30.0496 16.5241,29.8516 L29.5241,21.8516 C30.1801,21.4476 30.1521,20.4846 29.4741,20.1196 L26.6681,18.6086 L26.6691,18.6086 L26.6691,18.6086 L27.5391,18.0736 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        CLOUD SERVERS</h2>
+                    <div class="question">Aws Server</div>
+                    <div class="answer"><input type="number" id="awsServer" class="score localStore">
+                        <input type="hidden" id="awsServer_lifespan" class="lifespan" value="5">
+                    </div>
+                    <div class="answer2">Main Location: &nbsp;
+                        <select id="awsServer_location" class="location localStore">
+                            <option value="US" selected>US</option>
+                            <option value="EU">Europe</option>
+                            <option value="CN">Asia</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                    <div class="question">GCP Server</div>
+                    <div class="answer"><input type="number" id="gcpServer" class="score localStore">
+                        <input type="hidden" id="gcpServer_lifespan" class="lifespan" value="5">
+                    </div>
+                    <div class="answer2">Main Location: &nbsp;
+                        <select id="gcpServer_location" class="location localStore">
+                            <option value="US" selected>US</option>
+                            <option value="EU">Europe</option>
+                            <option value="CN">Asia</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                    <div class="question">Microsoft Server</div>
+                    <div class="answer"><input type="number" id="azureServer" class="score localStore">
+                        <input type="hidden" id="azureServer_lifespan" class="lifespan" value="5">
+                    </div>
+                    <div class="answer2">Main Location: &nbsp;
+                        <select id="azureServer_location" class="location localStore">
+                            <option value="US" selected>US</option>
+                            <option value="EU">Europe</option>
+                            <option value="CN">Asia</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                    <div class="question">Other Cloud Provider</div>
+                    <div class="answer"><input type="number" id="otherServer" class="score localStore">
+                        <input type="hidden" id="otherServer_lifespan" class="lifespan" value="5">
+                    </div>
+                    <div class="answer2">Main Location: &nbsp;
+                        <select id="otherServer_location" class="location localStore">
+                            <option value="US" selected>US</option>
+                            <option value="EU">Europe</option>
+                            <option value="CN">Asia</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+
+                    <div class="line31">Number of aws server<br /> (reported to medium server size: 3 CPU / 8Go RAM /
+                        200Go SSD)</div>
+                    <div class="line31">Number of GCP server (eq aws)</div>
+                    <div class="line31">Number of azure server (eq aws)</div>
+                    <div class="line31">Number of other server (eq aws)</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 awsServer_display"><span class="totalGHG cloud_servers"
+                            id="awsServer_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 gcpServer_display"><span class="totalGHG cloud_servers"
+                            id="gcpServer_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 azureServer_display"><span class="totalGHG cloud_servers"
+                            id="azureServer_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 otherServer_display"><span class="totalGHG cloud_servers"
+                            id="otherServer_result"></span><span class="unit"></span></div>
+                </div>
+            </div>
+            <!--Cloud Servers-->
+            <div id="pan_cloud_storage" class="complete">
+                <div class="input_part complete">
+                    <h2><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/privacy/resp</title>
+                            <g id="icons/privacy/resp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path
+                                    d="M22,11 C22.153075,11 22.3061525,11.0351221 22.4468081,11.1053702 C24.9885274,12.3747899 27.1767626,13 29,13 C29.5522847,13 30,13.4477153 30,14 C30,19.1185955 28.7337203,23.0218212 26.5849965,25.773187 C25.0754151,27.7061532 23.0654079,29 22,29 C21.085537,29 19.4759876,28.0475622 18.0838113,26.556036 C16.5439838,26.8538615 14.5197877,27 12,27 C6.25147973,27 3.01950851,26.2817842 2.1049203,24.4459062 C2.03591567,24.3073913 2,24.1547514 2,24 L2,20 C2,19.601496 2.23309941,19.2574353 2.57038795,19.0967281 C2.376993,18.8975374 2.22197631,18.6808759 2.1049203,18.4459062 C2.03591567,18.3073913 2,18.1547514 2,18 L2,14 C2,13.601496 2.23309941,13.2574353 2.57038795,13.0967281 C2.376993,12.8975374 2.22197631,12.6808759 2.1049203,12.4459062 C2.03591567,12.3073913 2,12.1547514 2,12 L2,7 C2,6.83848524 2.03912234,6.67937382 2.11402076,6.5362751 C3.06567958,4.71806357 6.29696565,4 12,4 C17.7030344,4 20.9343204,4.71806357 21.8859792,6.5362751 C21.9608777,6.67937382 22,6.83848524 22,7 L22,11 L22,11 Z M20,11.7872594 L20,7.30352046 C19.306174,6.53891011 16.5870109,6 12,6 C7.41298914,6 4.69382604,6.53891011 4,7.30352046 L4,11.7069911 C4.6627747,12.4592493 7.38416218,13 12,13 C12.3109819,13 12.5692166,13.0033553 13.0798835,13.0124319 C14.0810375,13.0302262 14.473825,13.0303396 14.929462,13.0024493 C14.9323809,13.0022459 14.9353032,13.002055 14.9382289,13.0018767 C14.9617609,13.0004533 14.9851511,12.9998231 15.0083732,13 C15.5039122,12.9992765 16.0657317,12.9349337 16.68017,12.8122976 C17.4968924,12.6492875 18.3777381,12.3897817 19.2838745,12.0602243 C19.5276035,11.9715813 19.7668223,11.880201 20,11.7872594 L20,11.7872594 Z M14.0173519,15.0247036 C13.7578981,15.023726 13.4472032,15.0192764 13.0443414,15.012116 C12.5451352,15.0032432 12.2955306,15 12,15 C8.31876756,15 5.66953523,14.7054701 4,14.0115118 L4,17.7069911 C4.6627747,18.4592493 7.38416218,19 12,19 C12.8843622,19 13.7016521,18.9813943 14.4515422,18.944305 C14.213134,17.7339739 14.0654971,16.4279208 14.0173519,15.0247036 L14.0173519,15.0247036 Z M14.9458891,20.9203186 C14.0538376,20.9735044 13.0720486,21 12,21 C8.31876756,21 5.66953523,20.7054701 4,20.0115118 L4,23.7069911 C4.6627747,24.4592493 7.38416218,25 12,25 C13.8671079,25 15.4332459,24.9169344 16.6931335,24.753414 C15.9773999,23.6353423 15.3885158,22.3587136 14.9458891,20.9203186 L14.9458891,20.9203186 Z M5.55681484,8.8964301 C5.06173017,8.65166569 4.8588055,8.05189951 5.1035699,7.55681484 C5.34833431,7.06173017 5.94810049,6.8588055 6.44318516,7.1035699 C7.62978126,7.69020994 9.48852163,8 12,8 C14.5114784,8 16.3702187,7.69020994 17.5568148,7.1035699 C18.0518995,6.8588055 18.6516657,7.06173017 18.8964301,7.55681484 C19.1411945,8.05189951 18.9382698,8.65166569 18.4431852,8.8964301 C16.9328495,9.6431234 14.7915899,10 12,10 C9.20841013,10 7.0671505,9.6431234 5.55681484,8.8964301 Z M21.734625,13.2262619 C21.1873434,13.4695782 20.5920982,13.7125972 19.9674582,13.9397757 C18.9728399,14.3015135 17.99792,14.5887344 17.0716302,14.7736132 C16.7081835,14.8461537 16.3559163,14.9021149 16.0155354,14.9402511 C16.1566927,19.1518625 17.2521893,22.31561 18.9909702,24.5422012 C19.6638272,25.4038265 20.3967553,26.0696371 21.113159,26.5307616 C21.5737979,26.827259 21.9925597,27 22,27 C22.0071827,27 22.4259152,26.8272303 22.8864611,26.5307757 C23.6028849,26.0696119 24.3358385,25.4037917 25.0087308,24.5421767 C26.7462636,22.3173266 27.8415032,19.1569441 27.9841156,14.9505413 C26.18438,14.779066 24.1892431,14.1623183 21.9929285,13.1098304 C21.9139976,13.1459314 21.8277545,13.1848574 21.734625,13.2262619 Z M24.2928932,17.2928932 C24.6834175,16.9023689 25.3165825,16.9023689 25.7071068,17.2928932 C26.0976311,17.6834175 26.0976311,18.3165825 25.7071068,18.7071068 L21.7071068,22.7071068 C21.3165825,23.0976311 20.6834175,23.0976311 20.2928932,22.7071068 L18.2928932,20.7071068 C17.9023689,20.3165825 17.9023689,19.6834175 18.2928932,19.2928932 C18.6834175,18.9023689 19.3165825,18.9023689 19.7071068,19.2928932 L21,20.5857864 L24.2928932,17.2928932 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        CLOUD STORAGE</h2>
+                    <div class="question">Database</div>
+                    <div class="answer"><input type="number" id="databaseStorage" class="score localStore"></div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="question">File Storage</div>
+                    <div class="answer"><input type="number" id="fileStorage" class="score localStore">
+                    </div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="question">Server Storage</div>
+                    <div class="answer"><input type="number" id="serverStorage" class="score localStore">
+                        <div class="answer2">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+                    <div class="line31">Database storage in TO (ie: RDS)</div>
+                    <div class="line31">File storage in TO (ie: S3)</div>
+                    <div class="line31">Server specific storage in TO</div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 databaseStorage_display"><span class="totalGHG cloud_storage"
+                            id="databaseStorage_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 fileStorage_display"><span class="totalGHG cloud_storage"
+                            id="fileStorage_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 serverStorage_display"><span class="totalGHG cloud_storage"
+                            id="serverStorage_result"></span><span class="unit"></span></div>
+                </div>
+            </div>
+            <!--Ecommerce Server  -->
+            <div id="pan_ecommerce" class="complete">
+                <div class="input_part complete">
+                    <h2><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icons/standard/cart</title>
+                            <g id="icons/standard/cart" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path
+                                    d="M7.87346716,6.00792906 C7.91490805,6.00269648 7.95713913,6 8,6 L29,6 C29.5522847,6 30,6.44771525 30,7 L30,18 C30,18.4888666 29.6465483,18.9060717 29.1643274,18.9864059 L11.1643274,21.9850631 C10.6599078,22.0690954 10.1733621,21.7590323 10.0364872,21.2663196 L5.31809996,4.28139257 L3.31622777,4.9486833 C2.79228445,5.12333107 2.22596447,4.84017108 2.0513167,4.31622777 C1.87666893,3.79228445 2.15982892,3.22596447 2.68377223,3.0513167 L5.68377223,2.0513167 C6.22663087,1.87036382 6.81035011,2.1809932 6.96351276,2.7323376 L7.87346716,6.00792906 Z M8.42686148,8 L11.7227919,19.8644643 L28,17.1528106 L28,8 L8.42686148,8 Z M16,29 C14.3431458,29 13,27.6568542 13,26 C13,24.3431458 14.3431458,23 16,23 C17.6568542,23 19,24.3431458 19,26 C19,27.6568542 17.6568542,29 16,29 Z M25,29 C23.3431458,29 22,27.6568542 22,26 C22,24.3431458 23.3431458,23 25,23 C26.6568542,23 28,24.3431458 28,26 C28,27.6568542 26.6568542,29 25,29 Z M25,27 C25.5522847,27 26,26.5522847 26,26 C26,25.4477153 25.5522847,25 25,25 C24.4477153,25 24,25.4477153 24,26 C24,26.5522847 24.4477153,27 25,27 Z M16,27 C16.5522847,27 17,26.5522847 17,26 C17,25.4477153 16.5522847,25 16,25 C15.4477153,25 15,25.4477153 15,26 C15,26.5522847 15.4477153,27 16,27 Z"
+                                    id="shape" fill="#007DBC"></path>
+                            </g>
+                        </svg>
+                        ECOMMERCE </h2>
+                    <div class="question">Number of visits</div>
+                    <div class="answer"><input type="number" id="ecom" class="localStore"></div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="question">Page Impact (in gCO2eq)</div>
+                    <div class="answer"><input type="number" id="viewPage" class="score localStore" value="2"></div>
+                    <div class="answer2">&nbsp;</div>
+                </div>
+                <div class="triplebox">
+                    <h3>INFOS</h3>
+
+                    <div class="line31">Number of visit for all ecommerce websites</div>
+                    <div class="line31">Impact of a specific webpage (in g CO2eq) - use the <a
+                            href="https://chrome.google.com/webstore/detail/greenit-analysis/mofbfhffeklkbebfclfaiifefjflcpad?hl=fr"
+                            target="_blank" alt="Green IT Analysis Chrome Plugin">
+                            Green IT Analysis Plugin</a></div>
+                </div>
+                <div class="box">
+                    <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
+                    <div id="" class=" line31 ecom_display"><span class="totalGHG" id="ecom_result"></span><span
+                            class="unit"></span></div>
+                    <div id="" class=" line31 viewPage_display"><span class="totalGHG ecommerce" id="viewPage_result"></span><span
+                            class="unit"></span></div>
+                </div>
+            </div>
         </div>
-        <div class="container">
-            <h1>Cloud Storage</h1>
-            <h3>Database</h3>
-            <input type="number" id="DatabaseStorage" class="input">
-            <h3>File Storage</h3>
-            <input type="number" id="FileStorage" class="input">
-            <h3>Server Storage</h3>
-            <input type="number" id="serverStorage" class="input">
+        <div class="clear"></div>
+        <div id="footer">
+            <div class="footerboxResultHead">
+                <svg width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <title>icons/payment/bill</title>
+                    <g id="icons/payment/bill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M24.8888889,30 L7.11111111,30 C6.49746139,30 6,29.4776655 6,28.8333333 L6,3.16666667 C6,2.52233446 6.49746139,2 7.11111111,2 L24.8888889,2 C25.5025386,2 26,2.52233446 26,3.16666667 L26,28.8333333 C26,29.4776655 25.5025386,30 24.8888889,30 Z M24,28 L24,4 L8,4 L8,28 L24,28 Z M9.5,15 C9.22385763,15 9,14.7761424 9,14.5 C9,14.2238576 9.22385763,14 9.5,14 L17.5,14 C17.7761424,14 18,14.2238576 18,14.5 C18,14.7761424 17.7761424,15 17.5,15 L9.5,15 Z M10,6 L20,6 C20.5522847,6 21,6.44771525 21,7 C21,7.55228475 20.5522847,8 20,8 L10,8 C9.44771525,8 9,7.55228475 9,7 C9,6.44771525 9.44771525,6 10,6 Z M19,22 L22,22 C22.5522847,22 23,22.4477153 23,23 C23,23.5522847 22.5522847,24 22,24 L19,24 C18.4477153,24 18,23.5522847 18,23 C18,22.4477153 18.4477153,22 19,22 Z M9.5,13 C9.22385763,13 9,12.7761424 9,12.5 C9,12.2238576 9.22385763,12 9.5,12 L14.5,12 C14.7761424,12 15,12.2238576 15,12.5 C15,12.7761424 14.7761424,13 14.5,13 L9.5,13 Z M9.5,11 C9.22385763,11 9,10.7761424 9,10.5 C9,10.2238576 9.22385763,10 9.5,10 L19.5,10 C19.7761424,10 20,10.2238576 20,10.5 C20,10.7761424 19.7761424,11 19.5,11 L9.5,11 Z"
+                            id="shape" fill="#fff"></path>
+                    </g>
+                </svg>
+                RESULTS
+            </div>
+
+            <div class="footerboxResult">
+                <div class="globalResult"><span>Total CO2 global emission</span><br /><span id="resultGHG"></span>
+                    ton CO2eq / Year</div>
+                <span><i>CO2 Production emission: </i></span><span id="resultGHGProduction"></span> ton CO2eq / Year
+                (<span id="percentProduction"></span> %)<br />
+                <span><i>CO2 Energy emission: </i></span><span id="resultGHGEnergy"></span> ton CO2eq / Year (<span
+                    id="percentEnergy"></span> %)<br />
+            </div>
+            <div class="clear"></div>
+            <div id="boxLeft">
+                <div class="footerboxResultUserHead">
+                    RESULT PER USER
+                </div>
+                <div class="footerboxResultUser">
+                    <span id="ResultPerUser"></span> kg CO2eq / Year / User
+                </div>
+            </div>
+            <div id="boxRight">
+
+                <div id="footerGraphs">
+                    TEST
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
         </div>
-        <div>
-            <h1>Cloud Server Consumption</h1>
-            <h1>Ecommerce</h1>
-            <h3>Number of visits</h3>
-            <input type="number" id="ecom" class="input">
-            <h3>Page Impact</h3>
-            <input type="number" id="page" class="input">
+
+
+        <ul>
+            <li>
+                <s>Facteur production</s>
+            </li>
+            <li>
+                <s>Consommation énergétique (à coté prod)</s>
+            </li>
+            <li>
+                <s>Nb Année matériel</s>
+            </li>
+            <li>
+                <s>Résultat Global</s>
+            </li>
+            <li>
+                <s>Résultat par user</s>
+            </li>
+            <li>
+                Moyenne user Decathlon
+            </li>
+            <li>
+                <s>Infos à remplir</s>
+            </li>
+            <li>
+                Pas l'info -> moyenne Decat
+            </li>
+        </ul>
+
+    </div>
+    <div id="modal-help" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>How are the scores calculated?</h2>
+            </div>
+            <div class="modal-body">
+                <div id="content-text">
+
+                </div>
+            </div>
         </div>
     </div>
 </body>

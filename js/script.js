@@ -67,9 +67,12 @@ var mixEnergyFR = 0.06;
 var mixEnergyEU = 0.429;
 var mixEnergyCN = 0.766;
 var mixEnergyES = 0.238;
-var mixEnergyUS = 0.522;
+var mixEnergyIT = 0.406;
 var mixEnergyBR = 0.087;
 var mixEnergyAS = 0.087;
+var mixEnergyAU = 0.841;
+var mixEnergyDE = 0.461;
+var mixEnergyWorld = 0.429;
 var mixEnergy = mixEnergyEU;
 
 //sharing
@@ -101,9 +104,7 @@ function recalculateAll(){
         calculateScore($(this));
     });
     calculateTotal();
-    //Save Global Data
-    localStorage.setItem("country", $("#country").val());
-    localStorage.setItem("users", $("#users").val());
+    saveData();
 }
 
 ///
@@ -120,7 +121,8 @@ function calculateScore(_this){
     mixEnergySave = mixEnergy;
     if ($("#" + id + "_location").length)
     {
-        mixEnergy = $("#" + id + "_location").val();
+        mixEnergyLocation = $("#" + id + "_location").val();
+        mixEnergy = eval("mixEnergy" + mixEnergyLocation);
     }
 
     /*Lifespan -> default 1 */
@@ -151,10 +153,45 @@ function calculateScore(_this){
     CO2ProductionPerYearAll += Number(CO2MaterialProdPerYear);
     
     //Save Local
-    localStorage.setItem(id, inputNumber);
-    localStorage.setItem(id + "_lifespan", lifespan);
+    saveData();
     //result
     $("#" + id + "_result").html(numberWithCommas(CO2GlobalYear.toFixed(0)));
+}
+
+///
+// Calculate Total of all emissions
+//
+function calculateTotal(){
+    totalGHG = (Number(CO2ProductionPerYearAll) + Number(CO2EnergyPerYearAll)) / 1000;
+    
+    $("#resultGHG").html(numberWithCommas(totalGHG.toFixed(0)));
+    $("#resultGHGProduction").html(numberWithCommas((CO2ProductionPerYearAll / 1000 ).toFixed(0)));
+    $("#resultGHGEnergy").html(numberWithCommas((CO2EnergyPerYearAll / 1000).toFixed(0)));
+
+    var percentProduction = ((CO2ProductionPerYearAll /1000 / (totalGHG) ) * 100).toFixed(0);
+    $("#percentProduction").html(percentProduction);
+    $("#percentEnergy").html(100 - percentProduction);
+
+    var nb_user = Number($("#users").val());
+    var resultPerUser = 0;
+    if (nb_user> 0){
+        resultPerUser = (totalGHG * 1000 / nb_user).toFixed(2);
+    }
+    else
+    {
+
+    }
+
+    
+
+    //Result per user
+    $("#ResultPerUser").html(resultPerUser);
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
 }
 
 $(".lifespan").change(function(){
@@ -186,34 +223,43 @@ function resetForm(){
     });
 }
 
+//Get Data from Local Storage
 function getData(){
-    $(".localStore").each(function(){
-        var id = $(this).attr("id");
-        var value = localStorage.getItem(id);
-        if (value != "" && value != null)
-            $(this).val(value);
-    });
     
+    var jsonvar = localStorage.getItem("InputCO2Data");
+    if (jsonvar != null)
+    {
+        var json = JSON.parse(jsonvar);
+        $(".localStore").each(function(){
+            var id = $(this).attr("id");
+            var value = json[id];
+            if (value != "" && value != null)
+                $(this).val(value);
+        });
+    }
+    var mixEnergyValue = eval("mixEnergy" + $("#country").val());
+    mixEnergy = mixEnergyValue;
     recalculateAll();
+    
 }
 
-function calculateTotal(){
-    totalGHG = 0;
-    $(".totalGHG").each(function(){
-        totalGHG += Number($(this).html().replace(",",""));
+//Save Json Data to Local Storage
+function saveData(){
+    var jsonVar = "{";
+    $(".localStore").each(function(){
+      jsonVar = jsonVar + "\"" + $(this).attr("ID") + "\":\"" + $(this).val() + "\",";
     });
-    $("#resultGHG").html(totalGHG.toFixed(0));
-    $("#resultGHGProduction").html(CO2ProductionPerYearAll.toFixed(0));
-    $("#resultGHGEnergy").html(CO2EnergyPerYearAll.toFixed(0));
-
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-
+    jsonVar = jsonVar.slice(0, -1)
+    jsonVar += "}";
+  console.log(jsonVar);
+  localStorage.setItem("InputCO2Data", jsonVar);
 }
 
+
+//Draw Chart function
 function drawChart() {
+
+    //Draw First chart
     var totalGHGton = (totalGHG /1000).toFixed(0);
 
     // Create the data table.
@@ -221,8 +267,8 @@ function drawChart() {
         data.addColumn('string', 'Production');
         data.addColumn('number', 'Energy');
         data.addRows([
-          ['Production', CO2ProductionPerYearAll],
-          ['Energy', CO2EnergyPerYearAll]
+          ['Energy', CO2EnergyPerYearAll],
+          ['Production', CO2ProductionPerYearAll]
         ]);
 
     // Set chart options
@@ -236,6 +282,51 @@ function drawChart() {
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+
+    //Draw Second Chart
+    var TotalCloud = TotalClass("cloud");
+    var TotalDevices = TotalClass("devices");
+    var TotalCMobileDevices = TotalClass("mobile_devices");
+    var TotalStoreDevices = TotalClass("store_devices");
+    var TotalStoreServers = TotalClass("store_servers");
+    var TotalCloudServers = TotalClass("cloud_servers");
+    var TotalCloudStorage= TotalClass("cloud_storage");
+    var TotalEcommerce= TotalClass("ecommerce");
+
+    var data = google.visualization.arrayToDataTable([
+            ['Element', 'kg CO2'],
+          ['Cloud', TotalCloud,],
+          ['Devices', TotalDevices],
+          ['Mobile Devices', TotalCMobileDevices],
+          ['Store Devices', TotalStoreDevices,],
+          ['Store Servers', TotalStoreServers],
+          ['Cloud Servers', TotalCloudServers],
+          ['Cloud Storage', TotalCloudStorage],
+          ['Ecommerce', TotalEcommerce],
+        ]);
+
+        // Set chart options
+    var options = {'title': 'Global Impact: per source',
+        'width':500,
+        'height':250,
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.ColumnChart(document.getElementById('footerGraphs'));
+    chart.draw(data, options);
+    
+    
   }
+
+  //calculate total of a class
+  function TotalClass(type)
+  {
+    var a = 0;
+    $("." + type).each(function() {
+        a += parseInt($(this).html().replace(",",""));
+    });
+    return a;
+  }
+  
 
 });
