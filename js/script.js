@@ -4,7 +4,7 @@ var mailFactor = 0.010;
 var visioFactor = 0;
 var laptopFactor = 500;
 var desktopFactor = 650;
-var thinclientFactor = 200;
+var thinclientFactor = 50;
 var smallScreenFactor = 400;
 var bigScreenFactor = 617;
 var smartphoneFactor = 60;
@@ -26,10 +26,10 @@ var fileStorageFactor = 0.240;
 var serverStorageFactor = 0.240;
 var viewPageFactor = 0.002;
 
-//70w x 4 hours charge per day for laptop
-var wattHourChargeYearlaptop = 70*4;
-//80w x 8 hours charge per day for desktop
-var wattHourChargeYeardesktop = 80*8;
+//60w x 4 hours charge per day for laptop
+var wattHourChargeYearlaptop = 60*4;
+//70w x 8 hours charge per day for desktop
+var wattHourChargeYeardesktop = 70*8;
 //20w x 8 hours charge per day for thinclient
 var wattHourChargeYearthinclient = 20*8;
 //40w x 6 hours charge per day for screen
@@ -62,24 +62,35 @@ var wattHourChargeYearazureServer= 500*24;
 var wattHourChargeYearotherServer= 500*24;
 
 var joursOuvres = 220;
+var joursAnnuel = 365;
 
 var mixEnergyFR = 0.06;
 var mixEnergyEU = 0.429;
 var mixEnergyCN = 0.766;
 var mixEnergyES = 0.238;
 var mixEnergyIT = 0.406;
+var mixEnergyUS = 0.522;
 var mixEnergyBR = 0.087;
 var mixEnergyAS = 0.087;
 var mixEnergyAU = 0.841;
 var mixEnergyDE = 0.461;
-var mixEnergyWorld = 0.429;
+var mixEnergyIN = 1.009;
+//Medium mix United
+var mixEnergyWO = 0.540;
 var mixEnergy = mixEnergyEU;
+//Mix Energy Renewable Energy - Medium mix United
+var mixEnergyRE =0.08;
 
 //sharing
 var totalGHG = 0;
 var CO2ProductionAbsolute =0;
 var CO2ProductionPerYearAll =0;
 var CO2EnergyPerYearAll =0;
+var CO2WebBased = 0;
+
+//Equivalent (120g CO2 / km)
+var CO2kmEquivalent = 0.120;
+var DiametreTerre = 12742;
 
 $(document).ready(function(){
 init();
@@ -103,6 +114,7 @@ function recalculateAll(){
     $(".score").each(function(){
         calculateScore($(this));
     });
+    calculateWebBasedScore();
     calculateTotal();
     saveData();
 }
@@ -118,11 +130,22 @@ function calculateScore(_this){
     //Absolute CO2 Production
     CO2ProductionAbsolute += CO2MaterialProd;
 
-    mixEnergySave = mixEnergy;
+    var mixEnergySave = mixEnergy;
+    //220 days for lots of equipment but not for servers
+    var joursAnnuelSave = joursOuvres;
+    if (_this.hasClass("fullYear"))
+    {
+        joursOuvres = joursAnnuel;
+    }
+    
     if ($("#" + id + "_location").length)
     {
         mixEnergyLocation = $("#" + id + "_location").val();
         mixEnergy = eval("mixEnergy" + mixEnergyLocation);
+    }
+    if ($("#" + id + "_RE").is(":checked") )
+    {
+        mixEnergy = eval("mixEnergyRE");
     }
 
     /*Lifespan -> default 1 */
@@ -144,6 +167,7 @@ function calculateScore(_this){
 
     //Restore Mix Energy
     mixEnergy = mixEnergySave;
+    joursOuvres = joursAnnuelSave;
 
     //Sum Prod and Energy
     CO2GlobalYear = Number(CO2MaterialProdPerYear) + Number(CO2EnergyPerYear);
@@ -162,11 +186,11 @@ function calculateScore(_this){
 // Calculate Total of all emissions
 //
 function calculateTotal(){
-    totalGHG = (Number(CO2ProductionPerYearAll) + Number(CO2EnergyPerYearAll)) / 1000;
+    totalGHG = (Number(CO2ProductionPerYearAll) + Number(CO2EnergyPerYearAll) + Number(CO2WebBased)) / 1000;
     
-    $("#resultGHG").html(numberWithCommas(totalGHG.toFixed(0)));
-    $("#resultGHGProduction").html(numberWithCommas((CO2ProductionPerYearAll / 1000 ).toFixed(0)));
-    $("#resultGHGEnergy").html(numberWithCommas((CO2EnergyPerYearAll / 1000).toFixed(0)));
+    $("#resultGHG").html(numberWithCommas(totalGHG.toFixed(1)));
+    $("#resultGHGProduction").html(numberWithCommas((CO2ProductionPerYearAll / 1000 ).toFixed(1)));
+    $("#resultGHGEnergy").html(numberWithCommas(((Number(CO2EnergyPerYearAll) + Number(CO2WebBased)) / 1000).toFixed(1)));
 
     var percentProduction = ((CO2ProductionPerYearAll /1000 / (totalGHG) ) * 100).toFixed(0);
     $("#percentProduction").html(percentProduction);
@@ -174,18 +198,29 @@ function calculateTotal(){
 
     var nb_user = Number($("#users").val());
     var resultPerUser = 0;
-    if (nb_user> 0){
-        resultPerUser = (totalGHG * 1000 / nb_user).toFixed(2);
-    }
+    var nb_store = Number($("#stores").val());
+    var resultPerStore = 0;
+    if (nb_user> 0)
+        resultPerUser = (totalGHG * 1000 / nb_user).toFixed(0);
     else
-    {
+        resultPerUser = "Please Fill in Number of Teammates";
+    if (nb_store >0)
+        resultPerStore= (totalGHG * 1000 / nb_store).toFixed(0);
+    else
+    resultPerStore = "Please Fill in Number of Stores";
 
-    }
+    var equivalentCO2Km = (totalGHG * 1000 / CO2kmEquivalent).toFixed(0);
+    var equivalentEarth = (equivalentCO2Km / DiametreTerre).toFixed(0);
 
     
 
     //Result per user
     $("#ResultPerUser").html(resultPerUser);
+    $("#ResultPerStore").html(resultPerStore);
+
+    //Equivalents
+    $("#ResultPerEquivalent").html(numberWithCommas(equivalentCO2Km));
+    $("#ResultEarth").html(numberWithCommas(equivalentEarth));
 
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
@@ -201,11 +236,43 @@ $(".lifespan").change(function(){
 
 $(".score").change(function(){
     recalculateAll();
-})
+});
+
+$("#users").change(function(){
+    recalculateAll();
+});
+
+$("#stores").change(function(){
+    recalculateAll();
+});
 
 $(".location").change(function(){
     recalculateAll();
-})
+});
+
+$(".RE").change(function(){
+    recalculateAll();
+});
+
+function calculateWebBasedScore(){
+    var ecomVisits = Number($("#ecom").val());
+    //In Gram
+    var pageScore = Number($("#viewPage").val());
+    CO2WebBased =  0;
+    if (ecomVisits >0 && pageScore >0)
+        CO2WebBased = Number(ecomVisits * pageScore / 1000).toFixed(0);
+
+
+    $("#viewPage_result").html(CO2WebBased);
+}
+
+$("#ecom").change(function(){
+    recalculateAll();
+});
+
+$("#viewPage").change(function(){
+    recalculateAll();
+});
 
 $("#country").change(function(){
     var mixEnergyValue = eval("mixEnergy" + $(this).val());
@@ -219,7 +286,7 @@ function numberWithCommas(x) {
 
 function resetForm(){
     $(".score").each(function(){
-
+        $(this).val("");
     });
 }
 
@@ -235,6 +302,10 @@ function getData(){
             var value = json[id];
             if (value != "" && value != null)
                 $(this).val(value);
+            if ($(this).is(":checkbox") && $(this).val() == "checked")
+            {
+                $(this).prop('checked', true)
+            }
         });
     }
     var mixEnergyValue = eval("mixEnergy" + $("#country").val());
@@ -247,7 +318,16 @@ function getData(){
 function saveData(){
     var jsonVar = "{";
     $(".localStore").each(function(){
-      jsonVar = jsonVar + "\"" + $(this).attr("ID") + "\":\"" + $(this).val() + "\",";
+        var val = $(this).val();
+        if ($(this).is(":checkbox"))
+        {
+            if ($(this).is(":checked"))
+                val = "checked";
+            else
+                val = "";
+        }
+            
+      jsonVar = jsonVar + "\"" + $(this).attr("ID") + "\":\"" + val + "\",";
     });
     jsonVar = jsonVar.slice(0, -1)
     jsonVar += "}";
@@ -260,7 +340,7 @@ function saveData(){
 function drawChart() {
 
     //Draw First chart
-    var totalGHGton = (totalGHG /1000).toFixed(0);
+    var totalGHGton = (totalGHG).toFixed(0);
 
     // Create the data table.
     var data = new google.visualization.DataTable();
@@ -268,7 +348,8 @@ function drawChart() {
         data.addColumn('number', 'Energy');
         data.addRows([
           ['Energy', CO2EnergyPerYearAll],
-          ['Production', CO2ProductionPerYearAll]
+          ['Production', CO2ProductionPerYearAll],
+          ['Ecommerce', Number(CO2WebBased)]
         ]);
 
     // Set chart options
@@ -307,8 +388,8 @@ function drawChart() {
 
         // Set chart options
     var options = {'title': 'Global Impact: per source',
-        'width':500,
-        'height':250,
+        'width':900,
+        'height':300,
     };
 
     // Instantiate and draw our chart, passing in some options.

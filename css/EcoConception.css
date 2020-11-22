@@ -199,7 +199,8 @@ select{
 #resultGHGProduction,  #resultGHGEnergy{
     font-weight: bold;
 }
-.footerboxResultUserHead{
+
+.ResultGreenBoxHead{
     margin-top: 20px;
     background-color:#029E73;
     text-align: center;
@@ -208,15 +209,19 @@ select{
     line-height: 30px;
     padding:2px;
 }
-.footerboxResultUser{
+.ResultGreenBoxContent{
     background-color: #BEDEEF;
     text-align: center;
     border-radius: 4px;
     min-height: 100px;
     padding:2px;
 }
-#ResultPerUser{
+#ResultPerUser, #ResultPerStore, #ResultPerEquivalent, #ResultEarth{
     font-size: 26px;
+    
+}
+.ResultRatio{
+    padding-top: 10px;
 }
 .footerGraphs{
     margin-top: 20px;
@@ -296,7 +301,7 @@ select{
         float: left;
         color: #4D4D4D;
         width: 30px;
-        background: url('../Images/bulb.png') no-repeat;
+        background: url('../images/bulb.png') no-repeat;
         position: relative;
    }
     .tooltip .tooltiptext {
@@ -332,6 +337,9 @@ select{
 }
 .line31 {
     height: 31px;
+}
+.line62{
+    height: 62px;
 }
 .line93 {
     height: 93px;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
-    <title>Web Eco Design - Environmental Calculator</title>
+    <title>Country CO2 Digital Impact Calculator - BETA VERSION</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script async="true" src="js/script.js" type="text/javascript"></script>
@@ -33,7 +33,7 @@
                     <img alt="logo"
                         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDgwIDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZmZkYTAwO30uY2xzLTJ7ZmlsbDojZWFiZDAwO30uY2xzLTMsLmNscy02e2ZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2Utd2lkdGg6NHB4O30uY2xzLTN7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO30uY2xzLTR7ZmlsbDojNDhlZjQ4O30uY2xzLTV7ZmlsbDojMmRkMzJkO30uY2xzLTZ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZS8+PHJlY3QgY2xhc3M9ImNscy0xIiBoZWlnaHQ9IjEwIiByeD0iMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE4LjM3NDcgNjQuMjYzNykgcm90YXRlKC01My4zNDUpIiB3aWR0aD0iNyIgeD0iNTEuMjc2MSIgeT0iNDUuNDIwNyIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU4LjQ3LDQ4LjgwNjlsLTIuODI1LTIuMTAyMmEyLjk5NTksMi45OTU5LDAsMCwxLC41NjE3LDQuMTQ4M2wtLjU5Ny44MDIyYTMsMywwLDAsMS00LjE5NzguNjE1OGwtLjM4MzYtLjI4NTVjLjAyLjAxNTIuMDMzOS4wMzQzLjA1MzguMDQ5MWwzLjIwODksMi4zODc5YTMsMywwLDAsMCw0LjE5NzctLjYxNTdsLjU5Ny0uODAyMkEzLDMsMCwwLDAsNTguNDcsNDguODA2OVoiLz48cmVjdCBjbGFzcz0iY2xzLTMiIGhlaWdodD0iMTAiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTguMzc0NyA2NC4yNjM3KSByb3RhdGUoLTUzLjM0NSkiIHdpZHRoPSI3IiB4PSI1MS4yNzYxIiB5PSI0NS40MjA3Ii8+PGxpbmUgY2xhc3M9ImNscy0zIiB4MT0iNTYuMjQ5OCIgeDI9IjU0LjM1NjciIHkxPSI0My40MTUyIiB5Mj0iNDUuOTU5MiIvPjxsaW5lIGNsYXNzPSJjbHMtMyIgeDE9IjYxLjA2MzMiIHgyPSI1OS4xNzAxIiB5MT0iNDYuOTk3MSIgeTI9IjQ5LjU0MTIiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik00My41NTE0LDQ2LjI3OTRDNTMuMTEzMiwzMy41NzE3LDY1LjMwMzMsMjAuMjc3LDYwLjE4LDE1LjMxNDljLTUuMTkxOS01LjI4OC0yMy45MzgzLDEuOTc0OC0zNS4xNjgsMTIuMjU4OS0xMS42OTg4LDkuODEwOS00LjIwNzUsMjAuNzMtMi4wNTE1LDIyLjkxMzRDMjUuNDEwNiw1Mi45MDY0LDM0LjU0OCw1OS4yMSw0My41NTE0LDQ2LjI3OTRaIi8+PHBhdGggY2xhc3M9ImNscy01IiBkPSJNNjAuMTgsMTUuMzE0OWMtMS44MzU4LTEuODctNS4zNy0yLjE2NDYtOS42NjM4LTEuMzE3M0E2LjU0MTIsNi41NDEyLDAsMCwxLDU0LjQzMTEsMTYuMDJjNC42OTkzLDUuMzY1OC04LjU0MDYsMTcuNjE1NC0xOS4xMTI5LDI5LjQ5NTYtMy42MTQ5LDQuMzc2Ni03LjA0LDYuMjU2LTEwLjA1MDcsNi43NTcyLDMuOTAyOCwyLjQxMzQsMTEuMTMzNyw0LjI3NTksMTguMjgzOS01Ljk5MzJDNTMuMTEzMiwzMy41NzE3LDY1LjMwMzMsMjAuMjc3LDYwLjE4LDE1LjMxNDlaIi8+PHBhdGggY2xhc3M9ImNscy02IiBkPSJNNDMuNTUxNCw0Ni4yNzk0QzUzLjExMzIsMzMuNTcxNyw2NS4zMDMzLDIwLjI3Nyw2MC4xOCwxNS4zMTQ5Yy01LjE5MTktNS4yODgtMjMuOTM4MywxLjk3NDgtMzUuMTY4LDEyLjI1ODktMTEuNjk4OCw5LjgxMDktNC4yMDc1LDIwLjczLTIuMDUxNSwyMi45MTM0QzI1LjQxMDYsNTIuOTA2NCwzNC41NDgsNTkuMjEsNDMuNTUxNCw0Ni4yNzk0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQ5LjU2MDYsMjIuOTMzM0ExNDMuNzc1NCwxNDMuNzc1NCwwLDAsMCwyMy4yNzQ2LDUwLjA2LDkuOTU4Miw5Ljk1ODIsMCwwLDAsMjQuMyw2My4wMDIyaDBhMTEuNzk4OSwxMS43OTg5LDAsMCwwLDguMzQzMSwzLjQ1NThoLjAwMThhMTcuNSwxNy41LDAsMCwwLDEyLjM3NDQtNS4xMjU2aDBxMy42MTQzLTMuNjE0Miw2Ljk3OTQtNy40NjUzbC42MDktLjY5NyIvPjxwYXRoIGNsYXNzPSJjbHMtNiIgZD0iTTM4LjY5ODgsMjQuOTI1N3EuODI1NiwyLjk0LDEuNjc3NCw1LjkyNzQsMy4wNy45MTMyLDYuMTQ3OCwxLjgxODMiLz48cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik0zMC44OSwyOS45MzEycTEuODQwOCwzLjI3NjQsMy43NCw2LjYyODIsMy4yOTc3LDEuODg3OCw2LjU1MjgsMy43MTQ5Ii8+PHBhdGggY2xhc3M9ImNscy02IiBkPSJNMjUuNjE5LDM3LjQ3OTRxMS40MjkzLDIuODg3MiwyLjk0NTcsNS44Njc3LDIuODE2NiwxLjQzMzMsNS41NjQ0LDIuNzg3MyIvPjwvc3ZnPg=="
                         width="48">
-                    Country CO2 Digital Impact Calculator </h1>
+                    Country CO2 Digital Impact Calculator - <i style="font-size:14px">BETA VERSION</i></h1>
             </div>
         </div>
         <div class="clear"></div>
@@ -73,6 +73,7 @@
                             <option value="ES">Spain</option>
                             <option value="IT">Italy</option>
                             <option value="CN">China</option>
+                            <option value="IN">India</option>
                             <option value="DE">Germany</option>
                             <option value="EU" selected>EU</option>
                             <option value="WO">Worlwide</option>
@@ -83,7 +84,11 @@
                     </div>
                     <div class="answer2">&nbsp;</div>
                     <div class="question">Number of teammates in the country</div>
-                    <div class="answer"><input type="number" value="200" id="users" class="globalData localStore"></div>
+                    <div class="answer"><input type="number" value="200" id="users" class=" globalData localStore"></div>
+                    <div class="answer2">&nbsp;</div>
+                    <div class="question">Number of Stores in the country</div>
+                    <div class="answer"><input type="number" value="200" id="stores" class=" globalData localStore">
+                    </div>
                     <div class="answer2">&nbsp;</div>
                     <div class="clear"></div>
 
@@ -116,28 +121,28 @@
                         <div class="question">Mail</div>
                         <div class="answer"><input type="number" id="mail" class="score localStore">
                         </div>
-                        <div class="answer2">&nbsp;</div>
+                        <!--<div class="answer2">&nbsp;</div>
                         <div class="question">Visio</div>
                         <div class="answer"><input type="number" id="visio" class="score localStore">
                         </div>
-                        <div class="answer2">&nbsp;</div>
+                        <div class="answer2">&nbsp;</div>-->
                     </div>
                     <div class="clear"></div>
                 </div>
                 <div class="triplebox">
                     <h3>INFOS</h3>
-                    <div class="line31">Google Drive storage</div>
+                    <div class="line31">Google Drive storage for all your teammates</div>
                     <div class="line31">Number of email send by your country</div>
-                    <div class="line31">Optional: Number of visio </div>
+                    <!--<div class="line31">Optional: Number of hours of visio </div>-->
                 </div>
                 <div class="box">
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
-                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="storage_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="mail_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud" id="visio_result"></span><span
-                            class="unit"></span></div>
+                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud"
+                            id="storage_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 storage_display"><span class="totalGHG cloud"
+                            id="mail_result"></span><span class="unit"></span></div>
+                    <!--<div id="" class=" line31 storage_display"><span class="totalGHG cloud"
+                            id="visio_result"></span><span class="unit"></span></div>-->
                 </div>
 
             </div>
@@ -224,10 +229,10 @@
                 </div>
                 <div class="box">
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
-                    <div id="" class=" line31 laptop_display"><span class="totalGHG devices" id="laptop_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 desktop_display"><span class="totalGHG devices" id="desktop_result"></span><span
-                            class="unit"></span></div>
+                    <div id="" class=" line31 laptop_display"><span class="totalGHG devices"
+                            id="laptop_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 desktop_display"><span class="totalGHG devices"
+                            id="desktop_result"></span><span class="unit"></span></div>
                     <div id="" class=" line31 thinclient_display"><span class="totalGHG devices"
                             id="thinclient_result"></span><span class="unit"></span></div>
                     <div id="" class=" line31 smallScreen_display"><span class="totalGHG devices"
@@ -279,8 +284,8 @@
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
                     <div id="" class=" line31 smartphone_display"><span class="totalGHG mobile_devices"
                             id="smartphone_result"></span><span class="unit"></span></div>
-                    <div id="" class=" line31 tablet_display"><span class="totalGHG mobile_devices" id="tablet_result"></span><span
-                            class="unit"></span></div>
+                    <div id="" class=" line31 tablet_display"><span class="totalGHG mobile_devices"
+                            id="tablet_result"></span><span class="unit"></span></div>
                 </div>
             </div>
             <!--User Devices-->
@@ -353,16 +358,16 @@
                 </div>
                 <div class="box">
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
-                    <div id="" class=" line31 barcode_display"><span class="totalGHG store_devices" id="barcode_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 cash_display"><span class="totalGHG store_devices" id="cash_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 kiosk_display"><span class="totalGHG store_devices" id="kiosk_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 printers_display"><span class="totalGHG store_devices" id="printers_result"></span><span
-                            class="unit"></span></div>
-                    <div id="" class=" line31 paper_display"><span class="totalGHG store_devices" id="paper_result"></span><span
-                            class="unit"></span></div>
+                    <div id="" class=" line31 barcode_display"><span class="totalGHG store_devices"
+                            id="barcode_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 cash_display"><span class="totalGHG store_devices"
+                            id="cash_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 kiosk_display"><span class="totalGHG store_devices"
+                            id="kiosk_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 printers_display"><span class="totalGHG store_devices"
+                            id="printers_result"></span><span class="unit"></span></div>
+                    <div id="" class=" line31 paper_display"><span class="totalGHG store_devices"
+                            id="paper_result"></span><span class="unit"></span></div>
                 </div>
             </div>
             <!--Stores Devices-->
@@ -379,7 +384,7 @@
                         </svg>
                         STORES SERVERS</h2>
                     <div class="question">Physical Servers</div>
-                    <div class="answer"><input type="number" id="physicalServer" class="score localStore">
+                    <div class="answer"><input type="number" id="physicalServer" class="score localStore fullYear">
                     </div>
                     <div class="answer2">Lifespan: &nbsp;
                         <select id="physicalServer_lifespan" class="lifespan localStore">
@@ -391,7 +396,7 @@
                         </select>
                     </div>
                     <div class="question">Hosting Bay</div>
-                    <div class="answer"><input type="number" id="hostingBay" class="score localStore">
+                    <div class="answer"><input type="number" id="hostingBay" class="score localStore fullYear">
                     </div>
                     <div class="answer2">Lifespan: &nbsp;
                         <select id="hostingBay_lifespan" class="lifespan localStore">
@@ -406,7 +411,7 @@
                         </select>
                     </div>
                     <div class="question">Network Equipment</div>
-                    <div class="answer"><input type="number" id="networkEquipment" class="score localStore">
+                    <div class="answer"><input type="number" id="networkEquipment" class="score localStore fullYear">
                     </div>
                     <div class="answer2">Lifespan: &nbsp;
                         <select id="networkEquipment_lifespan" class="lifespan localStore">
@@ -452,7 +457,7 @@
                         </svg>
                         CLOUD SERVERS</h2>
                     <div class="question">Aws Server</div>
-                    <div class="answer"><input type="number" id="awsServer" class="score localStore">
+                    <div class="answer"><input type="number" id="awsServer" class="score localStore fullYear">
                         <input type="hidden" id="awsServer_lifespan" class="lifespan" value="5">
                     </div>
                     <div class="answer2">Main Location: &nbsp;
@@ -464,8 +469,14 @@
                             <option value="AU">Australia</option>
                         </select>
                     </div>
+                    <div class="question">Renewable Energy ?</div>
+                    <div class="answer">
+                        <input type="checkbox" id="awsServer_RE" class="RE localStore">
+                    </div>
+                    <div class="answer2"> &nbsp;
+                    </div>
                     <div class="question">GCP Server</div>
-                    <div class="answer"><input type="number" id="gcpServer" class="score localStore">
+                    <div class="answer"><input type="number" id="gcpServer" class="score localStore fullYear">
                         <input type="hidden" id="gcpServer_lifespan" class="lifespan" value="5">
                     </div>
                     <div class="answer2">Main Location: &nbsp;
@@ -477,8 +488,14 @@
                             <option value="AU">Australia</option>
                         </select>
                     </div>
+                    <div class="question">Renewable Energy ?</div>
+                    <div class="answer">
+                        <input type="checkbox" id="gcpServer_RE" class="RE localStore">
+                    </div>
+                    <div class="answer2"> &nbsp;
+                    </div>
                     <div class="question">Microsoft Server</div>
-                    <div class="answer"><input type="number" id="azureServer" class="score localStore">
+                    <div class="answer"><input type="number" id="azureServer" class="score localStore fullYear">
                         <input type="hidden" id="azureServer_lifespan" class="lifespan" value="5">
                     </div>
                     <div class="answer2">Main Location: &nbsp;
@@ -490,8 +507,14 @@
                             <option value="AU">Australia</option>
                         </select>
                     </div>
+                    <div class="question">Renewable Energy ?</div>
+                    <div class="answer">
+                        <input type="checkbox" id="azureServer_RE" class="RE localStore">
+                    </div>
+                    <div class="answer2"> &nbsp;
+                    </div>
                     <div class="question">Other Cloud Provider</div>
-                    <div class="answer"><input type="number" id="otherServer" class="score localStore">
+                    <div class="answer"><input type="number" id="otherServer" class="score localStore fullYear">
                         <input type="hidden" id="otherServer_lifespan" class="lifespan" value="5">
                     </div>
                     <div class="answer2">Main Location: &nbsp;
@@ -503,26 +526,32 @@
                             <option value="AU">Australia</option>
                         </select>
                     </div>
+                    <div class="question">Renewable Energy ?</div>
+                    <div class="answer">
+                        <input type="checkbox" id="otherServer_RE" class="RE localStore">
+                    </div>
+                    <div class="answer2"> &nbsp;
+                    </div>
                 </div>
                 <div class="triplebox">
                     <h3>INFOS</h3>
 
 
-                    <div class="line31">Number of aws server<br /> (reported to medium server size: 3 CPU / 8Go RAM /
+                    <div class="line62">Number of aws server<br /> (reported to medium server size: 3 CPU / 8Go RAM /
                         200Go SSD)</div>
-                    <div class="line31">Number of GCP server (eq aws)</div>
-                    <div class="line31">Number of azure server (eq aws)</div>
-                    <div class="line31">Number of other server (eq aws)</div>
+                    <div class="line62">Number of GCP server (eq aws)</div>
+                    <div class="line62">Number of azure server (eq aws)</div>
+                    <div class="line62">Number of other server (eq aws)</div>
                 </div>
                 <div class="box">
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
-                    <div id="" class=" line31 awsServer_display"><span class="totalGHG cloud_servers"
+                    <div id="" class=" line62 awsServer_display"><span class="totalGHG cloud_servers"
                             id="awsServer_result"></span><span class="unit"></span></div>
-                    <div id="" class=" line31 gcpServer_display"><span class="totalGHG cloud_servers"
+                    <div id="" class=" line62 gcpServer_display"><span class="totalGHG cloud_servers"
                             id="gcpServer_result"></span><span class="unit"></span></div>
-                    <div id="" class=" line31 azureServer_display"><span class="totalGHG cloud_servers"
+                    <div id="" class=" line62 azureServer_display"><span class="totalGHG cloud_servers"
                             id="azureServer_result"></span><span class="unit"></span></div>
-                    <div id="" class=" line31 otherServer_display"><span class="totalGHG cloud_servers"
+                    <div id="" class=" line62 otherServer_display"><span class="totalGHG cloud_servers"
                             id="otherServer_result"></span><span class="unit"></span></div>
                 </div>
             </div>
@@ -580,12 +609,12 @@
                                     id="shape" fill="#007DBC"></path>
                             </g>
                         </svg>
-                        ECOMMERCE </h2>
+                        WEB BASED SERVICES (ECOMMERCE OR OTHER) </h2>
                     <div class="question">Number of visits</div>
                     <div class="answer"><input type="number" id="ecom" class="localStore"></div>
                     <div class="answer2">&nbsp;</div>
                     <div class="question">Page Impact (in gCO2eq)</div>
-                    <div class="answer"><input type="number" id="viewPage" class="score localStore" value="2"></div>
+                    <div class="answer"><input type="number" id="viewPage" class="localStore" value="2"></div>
                     <div class="answer2">&nbsp;</div>
                 </div>
                 <div class="triplebox">
@@ -601,8 +630,8 @@
                     <h3>CO2 Impact&nbsp<span class="unit">kgCO2eq / year</span></h3>
                     <div id="" class=" line31 ecom_display"><span class="totalGHG" id="ecom_result"></span><span
                             class="unit"></span></div>
-                    <div id="" class=" line31 viewPage_display"><span class="totalGHG ecommerce" id="viewPage_result"></span><span
-                            class="unit"></span></div>
+                    <div id="" class=" line31 viewPage_display"><span class="totalGHG ecommerce"
+                            id="viewPage_result"></span><span class="unit"></span></div>
                 </div>
             </div>
         </div>
@@ -631,50 +660,45 @@
             </div>
             <div class="clear"></div>
             <div id="boxLeft">
-                <div class="footerboxResultUserHead">
-                    RESULT PER USER
+                <div class="ResultGreenBoxHead">
+                    RESULT PER USER / STORES
                 </div>
-                <div class="footerboxResultUser">
-                    <span id="ResultPerUser"></span> kg CO2eq / Year / User
+                <div class="ResultGreenBoxContent">
+                    <div class="ResultRatio">
+                        <span id="ResultPerUser"></span> kg CO2eq / Year / User
+                    </div>
+                    <div class="ResultRatio">
+                        <span id="ResultPerStore"></span> kg CO2eq / Year / Store
+                    </div>
                 </div>
             </div>
             <div id="boxRight">
-
-                <div id="footerGraphs">
-                    TEST
+                <div class="ResultGreenBoxHead">
+                    CO2 Equivalent
                 </div>
-
+                <div class="ResultGreenBoxContent">
+                    <div class="ResultRatio">
+                        <span id="ResultPerEquivalent"></span> km by car by year
+                    </div>  
+                    <div class="ResultRatio">
+                        <span id="ResultEarth"></span>  world tour by car by year !
+                    </div>  
+                </div>
             </div>
-
-
             <div class="clear"></div>
+            <div id="footerGraphs"> </div>
         </div>
 
-
+        <h3>TODO</h3>
         <ul>
             <li>
-                <s>Facteur production</s>
+                Add Methodology rules
             </li>
             <li>
-                <s>Consommation énergétique (à coté prod)</s>
+                Add Storage infos
             </li>
             <li>
-                <s>Nb Année matériel</s>
-            </li>
-            <li>
-                <s>Résultat Global</s>
-            </li>
-            <li>
-                <s>Résultat par user</s>
-            </li>
-            <li>
-                Moyenne user Decathlon
-            </li>
-            <li>
-                <s>Infos à remplir</s>
-            </li>
-            <li>
-                Pas l'info -> moyenne Decat
+                Add Introduction
             </li>
         </ul>
 
